@@ -9,15 +9,16 @@
 	<h1 id="appName">
 		<strong><em>Patients Profile</em></strong>
 	</h1>
-	<div class="form">
+	
+	<form class="form" action="j_spring_security_check" method="post">
 		<div class="forceColor"></div>
 		<div class="topbar">
 			<div class="spanColor" style="height: 44px;"></div>
-			<input class="input" id="userName" placeholder="Username" type="text"></input>
-			<input class="input" id="password" placeholder="Password" type="password"></input>
+			<input class="input" id="l_username" placeholder="Username" type="text"></input>
+			<input class="input" id="j_password" placeholder="Password" type="password"></input>
 		</div>
-		<button class="submit" id="submit">Login</button>
-	</div>
+		<input type="submit" class="submit" id="submit" value="login"></input>
+	</form>
 
 	<div id="authorInfoContainer">
 		<span id="authorName">Dr. Md. Shafiqur Rahman</span> <br></br>

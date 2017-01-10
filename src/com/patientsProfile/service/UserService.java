@@ -27,7 +27,19 @@ public class UserService {
 	
 	public List<User> getAll(){
 		String sql = "Select * from user";
+				
+		return (List<User>) jdbcTemplate.query(sql, getMapper());
+	}
+	
+	public User getByUsername(String userName){
+		String sql = "Select * from user where userName = ?";
+				
+		User user = jdbcTemplate.queryForObject(sql, new Object[]{userName}, getMapper());
 		
+		return user;
+	}
+	
+	private RowMapper<User> getMapper(){
 		RowMapper<User> mapper = new RowMapper<User>(){
 			public User mapRow(ResultSet rs, int numRow) throws SQLException{
 				User user = new User();
@@ -40,7 +52,6 @@ public class UserService {
 				return user;
 			}
 		};
-		
-		return (List<User>) jdbcTemplate.query(sql, mapper);
+		return mapper;
 	}
 }

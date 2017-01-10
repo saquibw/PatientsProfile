@@ -26,6 +26,8 @@
  	   		<bean id="deployProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean" p:location="/WEB-INF/spring.properties" />
  	   		
  	   		<import resource="jdbc-context.xml" />
+ 	   		
+ 	   		<bean id="customUserDetailsService" class="com.patientsProfile.service.CustomUserDetailsService"/>
 
 
 </beans>
