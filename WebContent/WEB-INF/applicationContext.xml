@@ -15,7 +15,7 @@
  	   		
  	   		<context:annotation-config />
  	   		
- 	   		<context:component-scan base-package="com.patientsProfile.controller" />
+ 	   		<context:component-scan base-package="com.patientsProfile" />
  	   		
  	   		<mvc:annotation-driven /> 
  	   		
@@ -24,6 +24,8 @@
  	   		<!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages" /> -->
  	   		
  	   		<bean id="deployProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean" p:location="/WEB-INF/spring.properties" />
+ 	   		
+ 	   		<import resource="jdbc-context.xml" />
 
 
 </beans>
