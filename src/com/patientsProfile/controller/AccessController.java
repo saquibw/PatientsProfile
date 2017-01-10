@@ -14,7 +14,12 @@ public class AccessController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/")
+	public String redirect(){
+		return "redirect:/login";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		User user = userService.getByUsername("shafiqur");
 		System.out.println(user.getUserName());
