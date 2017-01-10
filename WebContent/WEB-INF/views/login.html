@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1"></meta>
 <title>Patients Profile</title>
@@ -18,6 +18,7 @@
 			<input class="input" id="j_password" name="j_password" placeholder="Password" type="password"></input>
 		</div>
 		<input type="submit" class="submit" id="submit" value="login"></input>
+		<p class="message">${message}</p>
 	</form>
 
 	<div id="authorInfoContainer">
