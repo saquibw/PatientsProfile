@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="main :: header">
+
+</head>
+<body>
+	<div th:replace="main :: menu"></div>
+	
+	<div id="examFindingsPage" class="form-group">
+		<form id="examFindingsform" action="#" method="post">
+			<table>
+				<tr>
+					<td><label>Anemia-</label></td>
+					<td><label><input type="radio" name="anemiaValue">(++)</label><td>
+					<td><label><input type="radio" name="anemiaValue">Nil</label><td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>

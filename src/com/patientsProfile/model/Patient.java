@@ -2,7 +2,6 @@ package com.patientsProfile.model;
 
 public class Patient {
 	private Integer id;
-	private String regNo;
 	private String name;
 	private Integer age;
 	private String profession;
@@ -16,18 +15,13 @@ public class Patient {
 	private String familyHistory;
 	private String smokingHistory;
 	private String drugHistory;
+	private String creationDate;
 	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getRegNo() {
-		return regNo;
-	}
-	public void setRegNo(String regNo) {
-		this.regNo = regNo;
 	}
 	public String getName() {
 		return name;
@@ -106,6 +100,12 @@ public class Patient {
 	}
 	public void setChiefComplains(String chiefComplains) {
 		this.chiefComplains = chiefComplains;
+	}
+	public String getCreationDate() {
+		return creationDate;
+	}
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
 	}
 	
 	

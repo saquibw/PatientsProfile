@@ -7,20 +7,20 @@
 	<div th:replace="main :: menu"></div>
 
 	<div id="registrationPage" class="form-group">
-		<form id="registrationForm" th:action="@{/savepatient}" th:object="${patient}" method="post">
+		<form id="registrationForm" th:action="@{/savepatient}" th:object="${patient}" method="post" accept-charset=utf-8>
 			<table>
 				<tr>
 					<td><label>Registration No:</label> </td>
 					<td><input type="text" class="form-control" id="regNo" name="regNo"  th:value="${regNo}" readonly="readonly"/></td>
 					<td><label>Date:</label></td>
-					<td><input type="text" class="form-control" id="regDate" required="required"></input></td>
+					<td><input type="text" class="form-control" id="regDate" th:field="*{creationDate}" required="required"></input></td>
 				</tr>
 				
 				<tr>
 					<td><label>Name:</label></td>
 					<td><input type="text" class="form-control" th:field="*{name}" autofocus="autofocus" required="required"/></td>
 					<td><label>Age:</label></td>
-					<td><input type="number" class="form-control" th:field="*{age}"/></td>
+					<td><input type="number" class="form-control" th:field="*{age}" required="required"/></td>
 				</tr>
 				
 				<tr>
