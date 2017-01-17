@@ -10,7 +10,8 @@
 		p:prefix="/WEB-INF/views/"
 		p:suffix=".html"
 		p:templateMode="HTML5"
-		p:order="1"/>
+		p:order="1"
+		p:cacheable="false"/>
 	
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine"
 		p:templateResolver-ref="templateResolver" />

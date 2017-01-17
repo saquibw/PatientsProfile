@@ -1,0 +1,26 @@
+body {
+	background-color: lightgray;
+}
+
+#homePage {
+	margin: 100px auto;
+	width: 300px;
+}
+
+#homePage a {
+	min-width: 250px;
+	margin-bottom: 10px;
+}
+
+#registrationPage {
+	margin: 10px auto;
+	width: 700px;
+}
+
+#registrationPage td{
+	padding: 5px;
+}
+
+.full-width{
+	width: 100%;
+}

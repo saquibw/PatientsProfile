@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="main :: header">
+
+</head>
+<body>
+	<div th:replace="main :: menu"></div>
+
+	<div id="registrationPage" class="form-group">
+		<form id="registrationForm" th:action="@{/savepatient}" th:object="${patient}" method="post">
+			<table>
+				<tr>
+					<td><label>Registration No:</label> </td>
+					<td><input type="text" class="form-control" id="regNo" name="regNo"  th:value="${regNo}" readonly="readonly"/></td>
+					<td><label>Date:</label></td>
+					<td><input type="text" class="form-control" id="regDate" required="required"></input></td>
+				</tr>
+				
+				<tr>
+					<td><label>Name:</label></td>
+					<td><input type="text" class="form-control" th:field="*{name}" autofocus="autofocus" required="required"/></td>
+					<td><label>Age:</label></td>
+					<td><input type="number" class="form-control" th:field="*{age}"/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Profession:</label></td>
+					<td><input type="text" class="form-control" th:field="*{profession}"/></td>
+					<td><label>Mobile:</label></td>
+					<td><input type="text" class="form-control" th:field="*{contactNo}"/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Area:</label></td>
+					<td><input type="text" class="form-control" th:field="*{area}"/></td>
+					<td><label>Thana:</label></td>
+					<td><input type="text" class="form-control" th:field="*{thana}"/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Zilla:</label></td>
+					<td><input type="text" class="form-control" th:field="*{zilla}"/></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td><label>Chief Complains:</label></td>
+					<td><textarea rows="3" class="form-control" th:field="*{chiefComplains}"></textarea></td>
+					<td><label>H/O Present Illness:</label></td>
+					<td><textarea rows="3" class="form-control" th:field="*{presentHistory}"></textarea></td>
+				</tr>
+
+				<tr>
+					<td><label>Past History:</label></td>
+					<td><textarea rows="1" class="form-control" th:field="*{pastHistory}"></textarea></td>
+					<td><label>Family History:</label></td>
+					<td><textarea rows="1" class="form-control" th:field="*{familyHistory}"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td><label>Smoking History History:</label></td>
+					<td><textarea rows="1" class="form-control" th:field="*{smokingHistory}"></textarea></td>
+					<td><label>Drug History:</label></td>
+					<td><textarea rows="1" class="form-control" th:field="*{drugHistory}"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td colspan="4"><input type="submit" class="btn btn-success btn-lg full-width" value="Save"/></td>
+					
+				</tr>
+			</table>
+
+		</form>
+	</div>
+	
+	<script>
+	$("document").ready(function() {
+		$("#regDate").datepicker({
+			format: 'dd/mm/yyyy',
+			autoclose: true
+		});
+		$("#regDate").datepicker('update', new Date());
+	});		
+	</script>
+	
+</body>
+</html>
