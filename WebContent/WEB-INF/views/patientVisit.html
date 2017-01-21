@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="main :: header">
+
+</head>
+<body>
+	<div th:replace="main :: menu"></div>
+
+	<div id="patientVisitPage" class="form-group">
+		<form id="patientVisitForm" th:action="@{/savepatientvisit}" th:object="${patientVisit}" method="post" accept-charset="utf-8">
+			<table>
+				<tr>
+					<td><label>Registration No:</label> </td>
+					<td><input type="text" class="form-control" id="regNo" name="regNo"  th:value="${regNo}" readonly="readonly"/></td>
+					<td><label>Visit Date:</label></td>
+					<td><input type="text" class="form-control" id="visitDate" th:field="*{creationDate}" required="required"/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Patient Name:</label> </td>
+					<td colspan="3"><input type="text" class="form-control" id="patientName" th:value="${patientName}" readonly="readonly"/></td>
+				</tr>
+				
+				<tr>
+					<td><label>Age:</label> </td>
+					<td><input type="text" class="form-control" id="patientAge" th:value="${patientAge}" readonly="readonly"/></td>
+					<td><label>Sex:</label></td>
+					<td><input type="text" class="form-control" id="patientSex" th:value="${patientSex}" readonly="readonly"/></td>
+				</tr>
+							
+				<tr>
+					<td><label>Chief Complains:</label></td>
+					<td colspan="3"><textarea rows="3" class="form-control" th:field="*{chiefComplains}"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td><label>H/O Present Illness:</label></td>
+					<td colspan="3"><textarea rows="3" class="form-control" th:field="*{presentHistory}"></textarea></td>
+				</tr>
+				
+				
+				<tr>
+					<td></td>
+					<td colspan="3"><input type="submit" class="btn btn-success btn-lg full-width" value="Save"/></td>
+					
+				</tr>
+			</table>
+
+		</form>
+	</div>
+	
+	<script th:inline="javascript">
+	$("document").ready(function() {
+		$("#visitDate").datepicker({
+			format: 'dd/mm/yyyy',
+			autoclose: true
+		});
+		$("#visitDate").datepicker('update', new Date());
+	});		
+	
+	/*<![CDATA[*/
+	var regNo = [[${regNo}]];
+	var patientName = [[${patientName}]];
+	var patientAge = [[${patientAge}]];
+	var patientSex = [[${patientSex}]];
+	
+	/*]]>*/
+
+	if(regNo){
+		PatientManager.saveToSessionStorage("regNo", regNo);
+		PatientManager.saveToSessionStorage("patientName", patientName);
+		PatientManager.saveToSessionStorage("patientAge", patientAge);
+		PatientManager.saveToSessionStorage("patientSex", patientSex);
+	}else{
+		regNo = PatientManager.getFromSessionStorage("regNo");
+		patientName = PatientManager.getFromSessionStorage("patientName");
+		patientAge = PatientManager.getFromSessionStorage("patientAge");
+		patientSex = PatientManager.getFromSessionStorage("patientSex");
+		$("#regNo").val(regNo);
+		$("#patientName").val(patientName);
+		$("#patientAge").val(patientAge);
+		$("#patientSex").val(patientSex);
+	}
+	</script>
+	
+</body>
+</html>

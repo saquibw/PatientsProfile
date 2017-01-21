@@ -3,10 +3,12 @@ package com.patientsProfile.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.patientsProfile.model.Patient;
+import com.patientsProfile.model.PatientVisit;
 import com.patientsProfile.service.PatientService;
 
 @Controller
@@ -29,12 +31,4 @@ public class HomeController {
 				
 		return "registration";
 	}
-	
-	@RequestMapping(value="/findings", method=RequestMethod.GET)
-	public String viewExamFindingsPage(ModelMap model){
-		model.addAttribute("pageName", "Examination Findings");
-		
-		return "examFindings";
-	}
-
 }

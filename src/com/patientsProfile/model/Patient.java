@@ -1,28 +1,21 @@
 package com.patientsProfile.model;
 
 public class Patient {
-	private Integer id;
+	private Integer regNo;
 	private String name;
 	private Integer age;
+	private String sex;
 	private String profession;
 	private String contactNo;
 	private String area;
 	private String thana;
 	private String zilla;
-	private String chiefComplains;
-	private String presentHistory;
 	private String pastHistory;
 	private String familyHistory;
 	private String smokingHistory;
 	private String drugHistory;
 	private String creationDate;
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+		
 	public String getName() {
 		return name;
 	}
@@ -65,11 +58,17 @@ public class Patient {
 	public void setZilla(String zilla) {
 		this.zilla = zilla;
 	}
-	public String getPresentHistory() {
-		return presentHistory;
+	public String getCreationDate() {
+		return creationDate;
 	}
-	public void setPresentHistory(String presentHistory) {
-		this.presentHistory = presentHistory;
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
+	}
+	public String getDrugHistory() {
+		return drugHistory;
+	}
+	public void setDrugHistory(String drugHistory) {
+		this.drugHistory = drugHistory;
 	}
 	public String getPastHistory() {
 		return pastHistory;
@@ -89,23 +88,17 @@ public class Patient {
 	public void setSmokingHistory(String smokingHistory) {
 		this.smokingHistory = smokingHistory;
 	}
-	public String getDrugHistory() {
-		return drugHistory;
+	public Integer getRegNo() {
+		return regNo;
 	}
-	public void setDrugHistory(String drugHistory) {
-		this.drugHistory = drugHistory;
+	public void setRegNo(Integer regNo) {
+		this.regNo = regNo;
 	}
-	public String getChiefComplains() {
-		return chiefComplains;
+	public String getSex() {
+		return sex;
 	}
-	public void setChiefComplains(String chiefComplains) {
-		this.chiefComplains = chiefComplains;
-	}
-	public String getCreationDate() {
-		return creationDate;
-	}
-	public void setCreationDate(String creationDate) {
-		this.creationDate = creationDate;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 	

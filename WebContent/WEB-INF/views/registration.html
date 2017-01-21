@@ -7,11 +7,11 @@
 	<div th:replace="main :: menu"></div>
 
 	<div id="registrationPage" class="form-group">
-		<form id="registrationForm" th:action="@{/savepatient}" th:object="${patient}" method="post" accept-charset=utf-8>
+		<form id="registrationForm" th:action="@{/registerpatient}" th:object="${patient}" method="post" accept-charset="utf-8">
 			<table>
 				<tr>
 					<td><label>Registration No:</label> </td>
-					<td><input type="text" class="form-control" id="regNo" name="regNo"  th:value="${regNo}" readonly="readonly"/></td>
+					<td><input type="text" class="form-control" th:id="regNo" th:name="regNo" th:value="${regNo}" readonly="readonly"/></td>
 					<td><label>Date:</label></td>
 					<td><input type="text" class="form-control" id="regDate" th:field="*{creationDate}" required="required"></input></td>
 				</tr>
@@ -24,31 +24,28 @@
 				</tr>
 				
 				<tr>
+					<td><label>Sex:</label></td>
+					<td><select class="form-control" th:field="*{sex}" required="required">
+						<option value="" selected="selected">-------- Select --------</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select></td>
 					<td><label>Profession:</label></td>
 					<td><input type="text" class="form-control" th:field="*{profession}"/></td>
+				</tr>
+				
+				<tr>
 					<td><label>Mobile:</label></td>
 					<td><input type="text" class="form-control" th:field="*{contactNo}"/></td>
-				</tr>
-				
-				<tr>
 					<td><label>Area:</label></td>
 					<td><input type="text" class="form-control" th:field="*{area}"/></td>
+				</tr>
+				
+				<tr>
 					<td><label>Thana:</label></td>
 					<td><input type="text" class="form-control" th:field="*{thana}"/></td>
-				</tr>
-				
-				<tr>
 					<td><label>Zilla:</label></td>
 					<td><input type="text" class="form-control" th:field="*{zilla}"/></td>
-					<td></td>
-					<td></td>
-				</tr>
-				
-				<tr>
-					<td><label>Chief Complains:</label></td>
-					<td><textarea rows="3" class="form-control" th:field="*{chiefComplains}"></textarea></td>
-					<td><label>H/O Present Illness:</label></td>
-					<td><textarea rows="3" class="form-control" th:field="*{presentHistory}"></textarea></td>
 				</tr>
 
 				<tr>
@@ -66,7 +63,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="4"><input type="submit" class="btn btn-success btn-lg full-width" value="Save"/></td>
+					<td colspan="4"><input type="submit" class="btn btn-success btn-lg full-width" value="Register Patient"/></td>
 					
 				</tr>
 			</table>
@@ -81,7 +78,7 @@
 			autoclose: true
 		});
 		$("#regDate").datepicker('update', new Date());
-	});		
+	});
 	</script>
 	
 </body>

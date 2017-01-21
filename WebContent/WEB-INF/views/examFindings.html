@@ -6,17 +6,243 @@
 <body>
 	<div th:replace="main :: menu"></div>
 	
-	<div id="examFindingsPage" class="form-group">
-		<form id="examFindingsform" action="#" method="post">
-			<table>
+	<table id="examFindingsPageTable">
+			<tr>
+				<td><label>Registration No:</label> </td>
+				<td><input type="text" class="form-control" id="regNo" name="regNo" readonly="readonly"/></td>
+				<td><label>Patient Name:</label> </td>
+				<td><input type="text" class="form-control" id="patientName" readonly="readonly"/></td>
+			</tr>
+
+			<tr>
+				<td><label>Age:</label> </td>
+				<td><input type="text" class="form-control" id="patientAge" readonly="readonly"/></td>
+				<td><label>Sex:</label></td>
+				<td><input type="text" class="form-control" id="patientSex" readonly="readonly"/></td>
+			</tr>
+		</table>
+	
+	<div id="examFindingsPage" class="form-group">		
+		<form id="examFindingsform" th:action="@{/saveexamfindings}" th:object="${examFindings}" method="post" accept-charset="utf-8">
+			<textarea th:id="visitId" th:field="*{visitId}" class="hide"></textarea>
+			<table class="table">
 				<tr>
-					<td><label>Anemia-</label></td>
-					<td><label><input type="radio" name="anemiaValue">(++)</label><td>
-					<td><label><input type="radio" name="anemiaValue">Nil</label><td>
+					<td><label>Anaemia -</label>
+						<label class="radio-inline"><input type="radio" name="anaemiaValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="anaemiaValue" value="0" checked="checked"/>Nil</label>
+					</td>
+					
+					<td><label>Neck Veins -</label>
+						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="1"/>Engorged /</label>
+						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="0" checked="checked"/>Normal</label>
+					</td>
+					
+					<td><label>Jaundice -</label>
+						<label class="radio-inline"><input type="radio" name="jaundiceValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="jaundiceValue" value="0" checked="checked"/>Nil</label>
+					</td>					
+				</tr>
+				
+				<tr>
+					<td><label>Clubbing -</label>
+						<label class="radio-inline"><input type="radio" name="clubingValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="clubingValue" value="0" checked="checked"/>None</label>
+					</td>
+					
+					<td><label>Cyanosis -</label>
+						<label class="radio-inline"><input type="radio" name="cyanosisValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="cyanosisValue" value="0" checked="checked"/>None</label>
+					</td>
+					
+					<td><label>Koilonychia -</label>
+						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="0" checked="checked"/>None</label>
+					</td>			
+				</tr>
+				
+				<tr>
+					<td><label>Oedema -</label>
+						<label class="radio-inline"><input type="radio" name="oedemaValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="oedemaValue" value="0" checked="checked"/>Nil</label>
+					</td>	
+					
+					<td><label>Gynaecomastia -</label>
+						<label class="radio-inline"><input type="radio" name="gynaecomastiaValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="gynaecomastiaValue" value="0" checked="checked"/>None</label>
+					</td>	
+					
+					<td><label>Ascitis -</label>
+						<label class="radio-inline"><input type="radio" name="ascitisValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="ascitisValue" value="0" checked="checked"/>None</label>
+					</td>				
+				</tr>
+				
+				<tr>
+					<td><label>Palmar erythema -</label>
+						<label class="radio-inline"><input type="radio" name="palmarErythemaValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="palmarErythemaValue" value="0" checked="checked"/>None</label>
+					</td>
+					
+					<td><label>Temperature -</label>
+						<label class="radio-inline"><input type="radio" name="temperatureValue" value="1"/>High /</label>
+						<label class="radio-inline"><input type="radio" name="temperatureValue" value="0" checked="checked"/>Normal</label>
+					</td>
+					
+					<td><label>Flapping Tremor -</label>
+						<label class="radio-inline"><input type="radio" name="flappingTremorValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="flappingTremorValue" value="0" checked="checked"/>None</label>
+					</td>	
+				</tr>
+				
+				<tr>
+					<td><label>Pulse - <input type="text" th:field="*{pulseValue}" class="half-width form-control"/> /Min</label>
+					</td>
+					
+					<td><label>B.P. - <input type="text" th:field="*{bpValue}" class="half-width form-control"/></label>
+					</td>
+					
+					<td><label>Liver -</label>
+						<label class="radio-inline"><input type="radio" name="liverValue" value="0" checked="checked"/>N.P. /</label>
+						<label class="radio-inline"><input type="radio" name="liverValue" value="" class="radio-top-margin"/><input type="text" class="liverValue half-width form-control"/></label>
+					</td>				
+				</tr>
+				
+				<tr>
+					<td><label>Spleen -</label>
+						<label class="radio-inline"><input type="radio" name="spleenValue" value="0" checked="checked"/>N.P. /</label>
+						<label class="radio-inline"><input type="radio" name="spleenValue" value="" class="radio-top-margin"/><input type="text" class="spleenValue half-width form-control"/></label>
+					</td>	
+					
+					<td><label>Kidney - <input type="text" th:field="*{kidneyValue}" class="half-width form-control"/> /Min</label>
+					</td>
+					
+					<td><label>Abdominal Tenderness -</label>
+						<label class="radio-inline"><input type="radio" name="abdomenValue" value="1"/>Epi(++) /</label>
+						<label class="radio-inline"><input type="radio" name="abdomenValue" value="0" checked="checked"/>Duo(++)</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><label>Lower Abdomen -</label>
+						<label class="radio-inline"><input type="radio" name="lowerAbdomenValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="lowerAbdomenValue" value="0" checked="checked"/>None</label>
+					</td>
+					
+					<td><label>Mcburney's Tenderness -</label>
+						<label class="radio-inline"><input type="radio" name="mcTendernessValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="mcTendernessValue" value="0" checked="checked"/>None</label>
+					</td>
+					
+					<td><label>Lymph Node -</label>
+						<label class="radio-inline"><input type="radio" name="lymphNodeValue" value="0" checked="checked"/>N.P. /</label>
+						<label class="radio-inline"><input type="radio" name="lymphNodeValue" value="" class="radio-top-margin"/><input type="text" class="lymphNodeValue half-width form-control"/></label>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><label>Lungs -</label>
+						<label class="radio-inline"><input type="radio" name="lungsValue" value="0" checked="checked"/>N.A.D /</label>
+						<label class="radio-inline"><input type="radio" name="lungsValue" value="" class="radio-top-margin"/><input type="text" class="lungsValue half-width form-control"/></label>
+					</td>
+					
+					<td><label>Heart -</label>
+						<label class="radio-inline"><input type="radio" name="heartValue" value="0" checked="checked"/>N.A.D /</label>
+						<label class="radio-inline"><input type="radio" name="heartValue" value="" class="radio-top-margin"/><input type="text" class="heartValue half-width form-control"/></label>
+					</td>
+					
+					<td><label>Nervous System -</label>
+						<label class="radio-inline"><input type="radio" name="nervousSystemValue" value="0" checked="checked"/>N.A.D /</label>
+						<label class="radio-inline"><input type="radio" name="nervousSystemValue" value="" class="radio-top-margin"/><input type="text" class="nervousSystemValue half-width form-control"/></label>
+					</td>
+				</tr>
+				
+				<tr>
+					<td ><label><strong>Provisional Diagnosis:</strong></label>						
+					</td>
+					<td colspan="3"><input type="text" th:field="*{provisionalDiagnosis}" class="form-control"/></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td><input type="submit" class="btn btn-success btn-lg full-width" value="Save"/></td>
+					<td></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	
+	
+	<script th:inline="javascript">
+	
+	$(document).ready(function() {
+		function selectRadioButton(element){
+			$('input:radio[name=' + element + ']')[1].checked = true;
+		}
+		
+		function updateRadioButtonValue(element, value){
+			$('input:radio[name=' + element + ']:checked').val(value);
+		}
+		
+		$(".liverValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".spleenValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".lymphNodeValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".lungsValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".heartValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".nervousSystemValue").keyup(function(){
+			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		
+		$(".liverValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});		
+		$(".spleenValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});
+		$(".lymphNodeValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});
+		$(".lungsValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});
+		$(".heartValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});
+		$(".nervousSystemValue").focus(function(){
+			selectRadioButton(this.className.split(" ")[0]);
+		});
+	});		
+	
+	/*<![CDATA[*/
+	var visitId = [[${visitId}]];
+	/*]]>*/
+	
+	if(visitId){
+		PatientManager.saveToSessionStorage("visitId", visitId);
+		
+	}else{
+		visitId = PatientManager.getFromSessionStorage("visitId");
+	}
+	
+	var regNo = PatientManager.getFromSessionStorage("regNo");
+	var patientName = PatientManager.getFromSessionStorage("patientName");
+	var patientAge = PatientManager.getFromSessionStorage("patientAge");
+	var patientSex = PatientManager.getFromSessionStorage("patientSex");
+	$("#visitId").val(visitId);
+	$("#regNo").val(regNo);
+	$("#patientName").val(patientName);
+	$("#patientAge").val(patientAge);
+	$("#patientSex").val(patientSex);
+	</script>
 
 </body>
 </html>

@@ -17,15 +17,55 @@ body {
 	width: 700px;
 }
 
-#registrationPage td{
+#registrationPage td {
 	padding: 5px;
 }
 
-.full-width{
+#patientVisitPage{
+	margin: 10px auto;
+	width: 700px;
+}
+
+#patientVisitPage td {
+	padding: 5px;
+}
+
+.full-width {
 	width: 100%;
 }
 
-#pageName{
+.half-width{
+	width: 80px !important;
+}
+
+.radio-top-margin{
+	margin-top:10px !important;
+}
+
+#pageName {
 	width: 200px;
 	margin-left: 10px;
+}
+
+#examFindingsPage {
+	margin: 40px auto;
+	width: 950px;
+}
+
+#examFindingsPageTable{
+	margin: 40px auto;
+	width: 950px;
+}
+
+#examFindingsPageTable td {
+	padding: 5px;
+}
+
+#examFindingsPage label{
+	margin-left: 0px !important;
+}
+
+#examFindingsPage input[type=text] {
+	display: inherit !important;
+	/* width: auto !important; */
 }
