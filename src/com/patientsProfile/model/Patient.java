@@ -1,7 +1,7 @@
 package com.patientsProfile.model;
 
 public class Patient {
-	private Integer regNo;
+	private String regNo;
 	private String name;
 	private Integer age;
 	private String sex;
@@ -88,10 +88,10 @@ public class Patient {
 	public void setSmokingHistory(String smokingHistory) {
 		this.smokingHistory = smokingHistory;
 	}
-	public Integer getRegNo() {
+	public String getRegNo() {
 		return regNo;
 	}
-	public void setRegNo(Integer regNo) {
+	public void setRegNo(String regNo) {
 		this.regNo = regNo;
 	}
 	public String getSex() {

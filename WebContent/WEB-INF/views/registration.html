@@ -77,6 +77,15 @@
 			format: 'dd/mm/yyyy',
 			autoclose: true
 		});
+		$("#regDate").change(function(){
+			var date = $("#regDate").val();
+			var dateArr = date.split("/");
+			var day = dateArr[0];
+			var month = dateArr[1];
+			var year = dateArr[2];
+			
+			PatientManager.setRegNo(day, month, year);
+		});
 		$("#regDate").datepicker('update', new Date());
 	});
 	</script>

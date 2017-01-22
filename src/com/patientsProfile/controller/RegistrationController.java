@@ -14,6 +14,7 @@ import com.patientsProfile.model.PatientVisit;
 import com.patientsProfile.service.ExamFindingsService;
 import com.patientsProfile.service.PatientService;
 import com.patientsProfile.service.PatientVisitService;
+import com.patientsProfile.service.RegistrationNoGeneratorService;
 import com.patientsProfile.service.UserService;
 import com.patientsProfile.utill.Utils;
 
@@ -28,17 +29,37 @@ public class RegistrationController {
 	
 	@Autowired
 	private ExamFindingsService examFindingsService;
+	
+	@Autowired
+	private RegistrationNoGeneratorService regService;
 
 	//Save patient
 	@RequestMapping(value="/registerpatient", produces="application/json", method=RequestMethod.POST)
 	public String savePatient(Patient patient, RedirectAttributes redirectAttrs){
-		int result = patientService.create(patient);
+		patientService.create(patient);
 		
-		String regNo = "";
-		if(result == 1){
-			regNo = Integer.toString(patient.getRegNo());
+		String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		String regNo = patient.getRegNo();
+		String[] regArr = regNo.split("/");
+		Integer day = Integer.parseInt(regArr[1]);
+		String monthString = regArr[2];
+		int index = 0;
+		for(int i=0;i<months.length;i++){
+			if(months[i].equals(monthString)){
+				index = i;
+				break;
+			}
 		}
-		redirectAttrs.addFlashAttribute("regNo", regNo);
+		Integer month = index;
+		Integer year = Integer.parseInt(regArr[0]);
+		Integer regIndex = Integer.parseInt(regArr[3]);
+		if(regIndex == 1){
+			regService.createRegNo(day, month, year);
+		}else{
+			regService.updateRegNo(day, month, year);
+		}
+		
+		redirectAttrs.addFlashAttribute("regNo", patient.getRegNo());
 		redirectAttrs.addFlashAttribute("patientName", patient.getName());
 		redirectAttrs.addFlashAttribute("patientAge", patient.getAge());
 		redirectAttrs.addFlashAttribute("patientSex", patient.getSex());

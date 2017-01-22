@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.patientsProfile.model.Patient;
 
 @Service
@@ -33,19 +32,6 @@ public class PatientService {
 			e.printStackTrace();
 		}finally {
 			return result;
-		}		
-	}
-	
-	@SuppressWarnings("finally")
-	public Integer getLastRegNo(){
-		String sql = "SELECT regNo FROM patient ORDER BY regNo DESC LIMIT 1";
-		Integer lastId = 0;
-		try {
-			lastId = jdbcTemplate.queryForObject(sql, new Object[]{}, Integer.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			return lastId;
 		}		
 	}
 }
