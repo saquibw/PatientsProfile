@@ -6,7 +6,7 @@
 <body>
 	<div th:replace="main :: menu"></div>
 	
-	<table id="examFindingsPageTable">
+	<table class="patientInfoHolder">
 			<tr>
 				<td><label>Registration No:</label> </td>
 				<td><input type="text" class="form-control" id="regNo" name="regNo" readonly="readonly"/></td>
@@ -27,14 +27,14 @@
 			<textarea th:id="visitId" th:field="*{visitId}" class="hide"></textarea>
 			<table class="table">
 				<tr>
+					<td><label>Temperature -</label>
+						<label class="radio-inline"><input type="radio" name="temperatureValue" value="1"/>High /</label>
+						<label class="radio-inline"><input type="radio" name="temperatureValue" value="0" checked="checked"/>Normal</label>
+					</td>
+					
 					<td><label>Anaemia -</label>
 						<label class="radio-inline"><input type="radio" name="anaemiaValue" value="1"/>(++) /</label>
 						<label class="radio-inline"><input type="radio" name="anaemiaValue" value="0" checked="checked"/>Nil</label>
-					</td>
-					
-					<td><label>Neck Veins -</label>
-						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="1"/>Engorged /</label>
-						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="0" checked="checked"/>Normal</label>
 					</td>
 					
 					<td><label>Jaundice -</label>
@@ -44,48 +44,50 @@
 				</tr>
 				
 				<tr>
-					<td><label>Clubbing -</label>
-						<label class="radio-inline"><input type="radio" name="clubingValue" value="1"/>(+) /</label>
-						<label class="radio-inline"><input type="radio" name="clubingValue" value="0" checked="checked"/>None</label>
+					<td><label>Oedema -</label>
+						<label class="radio-inline"><input type="radio" name="oedemaValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="oedemaValue" value="0" checked="checked"/>Nil</label>
 					</td>
-					
+										
 					<td><label>Cyanosis -</label>
 						<label class="radio-inline"><input type="radio" name="cyanosisValue" value="1"/>(+) /</label>
 						<label class="radio-inline"><input type="radio" name="cyanosisValue" value="0" checked="checked"/>None</label>
 					</td>
 					
-					<td><label>Koilonychia -</label>
-						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="1"/>(+) /</label>
-						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="0" checked="checked"/>None</label>
-					</td>			
+					<td><label>Ascitis -</label>
+						<label class="radio-inline"><input type="radio" name="ascitisValue" value="1"/>(++) /</label>
+						<label class="radio-inline"><input type="radio" name="ascitisValue" value="0" checked="checked"/>None</label>
+					</td>		
 				</tr>
 				
 				<tr>
-					<td><label>Oedema -</label>
-						<label class="radio-inline"><input type="radio" name="oedemaValue" value="1"/>(++) /</label>
-						<label class="radio-inline"><input type="radio" name="oedemaValue" value="0" checked="checked"/>Nil</label>
-					</td>	
+					<td><label>Neck Veins -</label>
+						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="1"/>Engorged /</label>
+						<label class="radio-inline"><input type="radio" name="neckVainsValue" value="0" checked="checked"/>Normal</label>
+					</td>
+					
+					<td><label>Clubbing -</label>
+						<label class="radio-inline"><input type="radio" name="clubingValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="clubingValue" value="0" checked="checked"/>None</label>
+					</td>
 					
 					<td><label>Gynaecomastia -</label>
 						<label class="radio-inline"><input type="radio" name="gynaecomastiaValue" value="1"/>(+) /</label>
 						<label class="radio-inline"><input type="radio" name="gynaecomastiaValue" value="0" checked="checked"/>None</label>
 					</td>	
 					
-					<td><label>Ascitis -</label>
-						<label class="radio-inline"><input type="radio" name="ascitisValue" value="1"/>(++) /</label>
-						<label class="radio-inline"><input type="radio" name="ascitisValue" value="0" checked="checked"/>None</label>
-					</td>				
+									
 				</tr>
 				
 				<tr>
+					<td><label>Koilonychia -</label>
+						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="1"/>(+) /</label>
+						<label class="radio-inline"><input type="radio" name="koilonychiaValue" value="0" checked="checked"/>None</label>
+					</td>	
+					
 					<td><label>Palmar erythema -</label>
 						<label class="radio-inline"><input type="radio" name="palmarErythemaValue" value="1"/>(+) /</label>
 						<label class="radio-inline"><input type="radio" name="palmarErythemaValue" value="0" checked="checked"/>None</label>
-					</td>
-					
-					<td><label>Temperature -</label>
-						<label class="radio-inline"><input type="radio" name="temperatureValue" value="1"/>High /</label>
-						<label class="radio-inline"><input type="radio" name="temperatureValue" value="0" checked="checked"/>Normal</label>
 					</td>
 					
 					<td><label>Flapping Tremor -</label>
@@ -113,7 +115,7 @@
 						<label class="radio-inline"><input type="radio" name="spleenValue" value="" class="radio-top-margin"/><input type="text" class="spleenValue half-width form-control"/></label>
 					</td>	
 					
-					<td><label>Kidney - <input type="text" th:field="*{kidneyValue}" class="half-width form-control"/> /Min</label>
+					<td><label>Kidney - <input type="text" th:field="*{kidneyValue}" class="half-width form-control"/></label>
 					</td>
 					
 					<td><label>Abdominal Tenderness -</label>

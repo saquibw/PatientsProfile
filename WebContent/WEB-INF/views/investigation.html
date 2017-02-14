@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="main :: header">
+</head>
+
+<body>
+	<div th:replace="main :: menu"></div>
+	
+	<table class="patientInfoHolder">
+			<tr>
+				<td><label>Registration No:</label> </td>
+				<td><input type="text" class="form-control" id="regNo" name="regNo" readonly="readonly"/></td>
+				<td><label>Patient Name:</label> </td>
+				<td><input type="text" class="form-control" id="patientName" readonly="readonly"/></td>
+			</tr>
+
+			<tr>
+				<td><label>Age:</label> </td>
+				<td><input type="text" class="form-control" id="patientAge" readonly="readonly"/></td>
+				<td><label>Sex:</label></td>
+				<td><input type="text" class="form-control" id="patientSex" readonly="readonly"/></td>
+			</tr>
+		</table>
+		
+		<div id="investigationsPage" class="form-group">
+			<form id="investigationform" th:action="@{/saveinvestigation}" th:object="${investigation}" method="post" accept-charset="utf-8">
+				<textarea th:id="visitId" th:field="*{visitId}" class="hide"></textarea>
+				<table class="table">
+					<tr>
+						<td><label>CXR -</label></td>
+						<td colspan="3"><input type="text" th:name="cxrValue" class="form-control"/></td>
+						<td><label>X-ray PNS (OM) -</label></td>
+						<td colspan="3"><input type="text" th:name="xrayValue" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td colspan="8"><label><strong>BLOOD:</strong></label></td>
+					</tr>
+					
+					<tr>
+						<td><label>HB -</label></td>
+						<td><input type="text" th:name="hbValue" class="form-control half-width"/>gm</td>
+						
+						<td><label>ESR -</label></td>
+						<td><input type="text" th:name="esrValue" class="form-control half-width"/>mm</td>
+						
+						<td><label>Total WBC -</label></td>
+						<td><input type="text" th:name="wbcValue" class="form-control half-width"/>/c.mm</td>
+						
+						<td><label>Platelets</label></td>
+						<td><input type="text" th:name="plateletsValue" class="form-control half-width"/>/c.mm</td>			
+					</tr>
+					
+					<tr>
+						<td><label>Blood Suger:<br></br> RBS</label></td>
+						<td><input type="text" th:name="bsRbsValue" class="form-control half-width"/>mmol/L</td>		
+						
+						<td><label>Fasting -</label></td>
+						<td><input type="text" th:name="bsFastingValue" class="form-control half-width"/>mmol/L</td>
+						
+						<td><label>2 HABF -</label></td>
+						<td><input type="text" th:name="habfValue" class="form-control half-width"/>mmol/L</td>
+						
+						<td><label>HbA1C -</label></td>
+						<td><input type="text" th:name="hba1cValue" class="form-control half-width"/>%</td>
+					</tr>
+					
+					<tr>
+						<td><label>S. Creatinin -</label></td>
+						<td><input type="text" th:name="creatininValue" class="form-control half-width"/>mmol/L</td>
+						
+						<td><label>B. Urea -</label></td>
+						<td><input type="text" th:name="bUreaValue" class="form-control half-width"/>mg/dl</td>
+						
+						<td><label>Uric Acid -</label></td>
+						<td><input type="text" th:name="uricAcidValue" class="form-control half-width"/>mg/dl</td>
+						
+						<td><label>D.C. -</label></td>
+						<td><input type="text" th:name="dcValue" class="form-control half-width"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>S. Bilirubin -</label></td>
+						<td><input type="text" th:name="bilirubinValue" class="form-control half-width"/>mg/dl</td>
+						
+						<td><label>SGPT(ALT) -</label></td>
+						<td><input type="text" th:name="sgptValue" class="form-control half-width"/></td>
+						
+						<td><label>SGOT -</label></td>
+						<td><input type="text" th:name="sgotValue" class="form-control half-width"/>U/L</td>
+						
+						<td><label>Alk. Phos -</label></td>
+						<td><input type="text" th:name="alkPhosValue" class="form-control half-width"/>U/L</td>
+					</tr>
+					
+					<tr>						
+						<td><label>Lipid Profile:<br></br> Total Cholesterol -</label></td>
+						<td><input type="text" th:name="cholesterolValue" class="form-control half-width"/></td>
+						
+						<td><label>HDL -</label></td>
+						<td><input type="text" th:name="hdlValue" class="form-control half-width"/></td>
+						
+						<td><label>LDL -</label></td>
+						<td><input type="text" th:name="ldlValue" class="form-control half-width"/></td>
+						
+						<td><label>TG -</label></td>
+						<td><input type="text" th:name="tgValue" class="form-control half-width"/></td>
+					</tr>
+					
+					<tr>						
+						<td><label>S.Electrolytes:<br></br> NA<sup>+</sup> =</label></td>
+						<td><input type="text" th:name="eNaValue" class="form-control half-width"/></td>
+						
+						<td><label>K<sup>+</sup> =</label></td>
+						<td><input type="text" th:name="eKValue" class="form-control half-width"/></td>
+						
+						<td><label>CL<sup>-</sup> =</label></td>
+						<td><input type="text" th:name="eClValue" class="form-control half-width"/>U/L</td>
+						
+						<td><label>CO<sub>2</sub> -</label></td>
+						<td><input type="text" th:name="eCo2Value" class="form-control half-width"/>U/L</td>
+					</tr>
+					
+					<tr>
+						<td><label>Prothrombin time -</label></td>
+						<td><input type="text" th:name="prothrombinValue" class="form-control half-width"/></td>
+						
+						<td><label>BT -</label></td>
+						<td><input type="text" th:name="btValue" class="form-control half-width"/></td>
+						
+						<td><label>CT -</label></td>
+						<td><input type="text" th:name="ctValue" class="form-control half-width"/></td>
+						
+						<td><label>R.A. Test-</label></td>
+						<td><input type="text" th:name="raValue" class="form-control half-width"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>S. Albumin -</label></td>
+						<td><input type="text" th:name="albuminValue" class="form-control half-width"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>Urine R/M/E-Alb</label></td>
+						<td>
+							<label class="radio-inline"><input type="radio" th:name="uAlbValue" value="high"/>+</label>
+							<label class="radio-inline"><input type="radio" th:name="uAlbValue" value="trace"/>Trace</label>
+							<label class="radio-inline"><input type="radio" th:name="uAlbValue" value="nil" checked="checked"/>Nil</label></td>
+						
+						<td><label>Sugar -</label></td>
+						<td><label class="radio-inline"><input type="radio" th:name="uSugarValue" value="high"/>++</label>
+							<label class="radio-inline"><input type="radio" th:name="uSugarValue" value="nil" checked="checked"/>Nil</label></td>
+						
+						<td><label>PC -</label></td>
+						<td><input type="text" th:name="uPcValue" class="form-control half-width"/>/HPF</td>
+						
+						<td><label>EC -</label></td>
+						<td><input type="text" th:name="uEcValue" class="form-control half-width"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>RBC -</label></td>
+						<td><label class="radio-inline"><input type="radio" th:name="uRbcValue" value="nil" checked="checked"/>Nil</label>
+						<label class="radio-inline"><input type="radio" th:name="uRbcValue" value="" class="radio-top-margin"/><input type="text" class="uRbcValue half-width form-control float-right"/></label><span>/HPF</span></td>
+					</tr>
+					
+					<tr>
+						<td><label>Sputum AFB: 1<sup>st</sup> -</label></td>
+						<td><input type="text" th:name="spuAfb1Value" class="form-control half-width"/></td>
+						
+						<td><label>2<sup>nd</sup> -</label></td>
+						<td><input type="text" th:name="spuAfb2Value" class="form-control half-width"/></td>
+							
+						<td><label>3<sup>rd</sup> -</label></td>
+						<td><input type="text" th:name="spuAfb3Value" class="form-control half-width"/></td>
+						
+						<td><label>Sputum<br></br> Eosinophils -</label></td>
+						<td><input type="text" th:name="spuEosinophilsValue" class="form-control half-width"/>/HPF</td>
+					</tr>
+					
+					<tr>
+						<td><label>Plural Fluid Exam:<br></br> Cytology -</label></td>
+						<td><input type="text" th:name="pfCytologyValue" class="form-control half-width"/></td>
+						
+						<td><label>Cells/C.mm -</label></td>
+						<td><input type="text" th:name="pfCellsCmmValue" class="form-control half-width"/></td>
+						
+						<td><label>Lymphocytes -</label></td>
+						<td><input type="text" th:name="pfLymphocytesValue" class="form-control half-width"/>%</td>
+						
+						<td><label>Polymorph -</label></td>
+						<td><input type="text" th:name="pfPolymorphValue" class="form-control half-width"/>%</td>
+					</tr>
+					
+					<tr>
+						<td><label>Mallignant Cells -</label></td>
+						<td><input type="text" th:name="pfMalignantCellsValue" class="form-control half-width"/></td>
+						
+						<td><label>ADA -</label></td>
+						<td><input type="text" th:name="pfAdaValue" class="form-control half-width"/></td>
+						
+						<td><label>Protein -</label></td>
+						<td><input type="text" th:name="pfProteinValue" class="form-control half-width"/>gm/L</td>
+						
+						<td><label>Sugar -</label></td>
+						<td><input type="text" th:name="pfSugarValue" class="form-control half-width"/>mmol/L</td>
+					</tr>
+					
+					<tr>
+						<td><label>AFB -</label></td>
+						<td><input type="text" th:name="pfAfbValue" class="form-control half-width"/></td>
+						
+						<td><label>USG -</label></td>
+						<td colspan="2"><input type="text" th:name="usgValue" class="form-control"/></td>
+						
+						<td><label>ECG -</label></td>
+						<td colspan="2"><input type="text" th:name="ecgValue" class="form-control"/></td>						
+					</tr>
+					
+					<tr>
+						<td><label>Echo-Cardiograph -</label></td>
+						<td><input type="text" th:name="cardioValue" class="form-control"/></td>
+						
+						<td><label>C.T. Scan Brain -</label></td>
+						<td colspan="2"><input type="text" th:name="ctScanValue" class="form-control"/></td>
+						
+						<td><label>HRCT Chest -</label></td>
+						<td colspan="2"><input type="text" th:name="htctChestValue" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>MRI Brain -</label></td>
+						<td><input type="text" th:name="mriBrainValue" class="form-control"/></td>
+						
+						<td><label>MRI Spine<br></br>(Dorsal/Lumbo-<br></br>Sarcral) -</label></td>
+						<td colspan="2"><input type="text" th:name="mriSpineValue" class="form-control"/></td>
+						
+						<td><label>FNAC -</label></td>
+						<td colspan="2"><input type="text" th:name="fnacValue" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>Endoscopy of <br></br>Upper G.I Tract -</label></td>
+						<td><input type="text" th:name="endoscopyValue" class="form-control"/></td>
+						
+						<td><label>Colonoscopy -</label></td>
+						<td colspan="2"><input type="text" th:name="coloscopyValue" class="form-control"/></td>
+						
+						<td><label>Bronchoscopy -</label></td>
+						<td colspan="2"><input type="text" th:name="bronchoscopyValue" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>Final Diagnosis:</label></td>
+						<td colspan="7"><input type="text" th:name="finalDiagnosis" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>Treatment Given:</label></td>
+						<td colspan="7"><input type="text" th:name="treatment" class="form-control"/></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"></td>
+						<td colspan="4"><input type="submit" class="btn btn-success btn-lg full-width" value="Save"/></td>
+						<td colspan="2"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+<script th:inline="javascript">
+$(document).ready(function() {
+	function selectRadioButton(element){
+		$('input:radio[name=' + element + ']')[1].checked = true;
+	}
+	
+	function updateRadioButtonValue(element, value){
+		$('input:radio[name=' + element + ']:checked').val(value);
+	}
+	
+	$(".uRbcValue").keyup(function(){
+		updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+	});
+	
+	$(".uRbcValue").focus(function(){
+		selectRadioButton(this.className.split(" ")[0]);
+	});
+});
+
+var visitId = PatientManager.getFromSessionStorage("visitId");
+var regNo = PatientManager.getFromSessionStorage("regNo");
+var patientName = PatientManager.getFromSessionStorage("patientName");
+var patientAge = PatientManager.getFromSessionStorage("patientAge");
+var patientSex = PatientManager.getFromSessionStorage("patientSex");
+$("#visitId").val(visitId);
+$("#regNo").val(regNo);
+$("#patientName").val(patientName);
+$("#patientAge").val(patientAge);
+$("#patientSex").val(patientSex);
+</script>
+</body>
+
+
+</html>

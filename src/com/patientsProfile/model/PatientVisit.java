@@ -2,7 +2,7 @@ package com.patientsProfile.model;
 
 public class PatientVisit {
 	private Integer id;
-	private Integer regNo;
+	private String regNo;
 	private String chiefComplains;
 	private String presentHistory;
 	private String creationDate;
@@ -13,10 +13,10 @@ public class PatientVisit {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getRegNo() {
+	public String getRegNo() {
 		return regNo;
 	}
-	public void setRegNo(Integer regNo) {
+	public void setRegNo(String regNo) {
 		this.regNo = regNo;
 	}
 	public String getChiefComplains() {

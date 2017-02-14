@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.patientsProfile.model.ExamFindings;
+import com.patientsProfile.model.Investigation;
 import com.patientsProfile.model.Patient;
 import com.patientsProfile.model.PatientVisit;
 import com.patientsProfile.service.ExamFindingsService;
+import com.patientsProfile.service.InvestigationService;
 import com.patientsProfile.service.PatientService;
 import com.patientsProfile.service.PatientVisitService;
 import com.patientsProfile.service.RegistrationNoGeneratorService;
-import com.patientsProfile.service.UserService;
-import com.patientsProfile.utill.Utils;
 
 @Controller
 public class RegistrationController {
@@ -32,6 +32,9 @@ public class RegistrationController {
 	
 	@Autowired
 	private RegistrationNoGeneratorService regService;
+	
+	@Autowired
+	private InvestigationService investigationService;
 
 	//Save patient
 	@RequestMapping(value="/registerpatient", produces="application/json", method=RequestMethod.POST)
@@ -110,6 +113,21 @@ public class RegistrationController {
 	@RequestMapping(value="/saveexamfindings", produces="application/json", method=RequestMethod.POST)
 	public String saveExamFindings(ExamFindings examFindings){
 		int result = examFindingsService.create(examFindings);
-		return "redirect:/examfindings";
+		return "redirect:/investigation";
+	}
+	
+	//View investigations page
+	@RequestMapping(value="/investigation", method=RequestMethod.GET)
+	public String viewInvestigationsPage(ModelMap model){
+		model.addAttribute("pageName", "Investigation");
+		model.addAttribute("investigation", new Investigation());
+		return "investigation";
+	}
+	
+	@RequestMapping(value="/saveinvestigation", produces="application/json", method=RequestMethod.POST)
+	public String saveInvestigationPage(Investigation investigation){
+		System.out.println(investigation.getCxrValue());
+		investigationService.create(investigation);
+		return "redirect:/home";		
 	}
 }

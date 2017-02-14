@@ -11,7 +11,7 @@ import com.patientsProfile.model.Patient;
 public class HomeController {
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public String viewHomePage(ModelMap model){
+	public String viewHomePage(){
 		return "home";
 	}
 	
