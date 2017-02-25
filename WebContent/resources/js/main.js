@@ -34,9 +34,46 @@ var PatientManager = (function(){
 		});
 	}
 	
+	var getPatientList = function(searchCriteria){
+		var request = $.ajax({
+			type: "GET",
+			url: "getPatientList",
+			dataType: 'JSON',
+			data: {
+				"searchCriteria": searchCriteria
+			}
+		});
+		
+		request.done(function(response){
+			if(response.success){
+				var patientList = JSON.parse(response.patientList);
+				if(patientList){
+					if(patientList.length > 0){
+						$("#noPatientNotification").addClass("hide");
+						$.each(patientList, function(key, patient){
+							var colStart = "<td>";
+							var colEnd = "</td>";
+							var html = "<tr>";
+							html += colStart + patient.visitDate + colEnd;
+							html += colStart + patient.regNo + colEnd;
+							html += colStart + patient.patientName + colEnd;
+							html += colStart + patient.chiefComplains + colEnd;
+							html += colStart + patient.finalDiagnosis + colEnd;
+							html += colStart + "<a class='btn' href='viewpatient?visitId=" + patient.visitId + "'>View</a>" + colEnd;
+							html += "</tr>";
+							
+							$("#patientVisitTable tbody").append(html);
+						});
+					}
+				}
+			}
+		});
+	};
+	
 	return{
 		saveToSessionStorage: saveToSessionStorage,
 		getFromSessionStorage:getFromSessionStorage,
-		setRegNo: setRegNo
+		setRegNo: setRegNo,
+		getPatientList: getPatientList
 	}
 })();

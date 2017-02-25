@@ -109,3 +109,12 @@ body {
 	float:right;
 	width: 250px;
 }
+
+#patientVisitTable td{
+	padding: 5px;
+}
+
+#patientVisitTable tbody{
+	overflow: scroll;
+    height: 100px;
+}

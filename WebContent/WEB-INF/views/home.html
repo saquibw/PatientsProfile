@@ -20,19 +20,29 @@
 			
 		</div>
 		<table class="table-bordered table-hover" id="patientVisitTable">
-		<tr>
-			<th><label>Date</label></th>
-			<th><label>Registration No</label></th>
-			<th><label>Name</label></th>
-			<th><label>Chief Complains</label></th>
-			<th><label>Final Diagnosis</label></th>
-			<th></th>
-		</tr>
-		<tr id="noPatientNotification">
-			<td colspan="6" style="text-align:center;white-space:nowrap">No patients available</td>
-		</tr>
+		<thead>
+			<tr>
+				<th><label>Date</label></th>
+				<th><label>Registration No</label></th>
+				<th><label>Name</label></th>
+				<th><label>Chief Complains</label></th>
+				<th><label>Final Diagnosis</label></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="noPatientNotification">
+				<td colspan="6" style="text-align:center;white-space:nowrap">No patients available</td>
+			</tr>
+		</tbody>
 			
 		</table>
 	</div>
+	
+	<script>
+	$("document").ready(function() {
+		PatientManager.getPatientList("");
+	});
+	</script>
 </body>
 </html>
