@@ -1,11 +1,16 @@
 package com.patientsProfile.service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.patientsProfile.model.Patient;
 import com.patientsProfile.model.Patient;
 
 @Service
@@ -33,5 +38,36 @@ public class PatientService {
 		}finally {
 			return result;
 		}		
+	}
+	
+	public Patient getByRegNo(String regNo){
+		String sql = "Select * From patient where regNo = ?";
+		
+		return jdbcTemplate.queryForObject(sql, new Object[]{regNo}, getMapper());
+	}
+	
+	private RowMapper<Patient> getMapper(){
+		RowMapper<Patient> mapper = new RowMapper<Patient>(){
+			public Patient mapRow(ResultSet rs, int numRow) throws SQLException{
+				Patient patient = new Patient();
+				patient.setRegNo(rs.getString("regNo"));
+				patient.setName(rs.getString("name"));
+				patient.setAge(rs.getInt("age"));
+				patient.setSex(rs.getString("sex"));
+				patient.setProfession(rs.getString("profession"));
+				patient.setContactNo(rs.getString("contactNo"));
+				patient.setArea(rs.getString("area"));
+				patient.setThana(rs.getString("thana"));
+				patient.setZilla(rs.getString("zilla"));
+				patient.setPastHistory(rs.getString("pastHistory"));
+				patient.setFamilyHistory(rs.getString("familyHistory"));
+				patient.setSmokingHistory(rs.getString("smokingHistory"));
+				patient.setDrugHistory(rs.getString("drugHistory"));
+				patient.setCreationDate(rs.getString("creationDate"));
+				
+				return patient;
+			}
+		};
+		return mapper;
 	}
 }

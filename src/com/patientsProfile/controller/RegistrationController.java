@@ -126,7 +126,6 @@ public class RegistrationController {
 	
 	@RequestMapping(value="/saveinvestigation", produces="application/json", method=RequestMethod.POST)
 	public String saveInvestigationPage(Investigation investigation){
-		System.out.println(investigation.getCxrValue());
 		investigationService.create(investigation);
 		return "redirect:/home";		
 	}

@@ -1,12 +1,17 @@
 package com.patientsProfile.service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.patientsProfile.model.PatientVisit;
 import com.patientsProfile.model.PatientVisit;
 
 @Service
@@ -47,5 +52,32 @@ public class PatientVisitService {
 		}finally{
 			return lastId;
 		}		
+	}
+	
+	public PatientVisit getById(Integer visitId){
+		String sql = "Select * From patient_visit where id = ?";
+		
+		return jdbcTemplate.queryForObject(sql, new Object[]{visitId}, getMapper());
+	}
+	
+	public void updateById(PatientVisit patientVisit){
+		String sql = "Update patient_visit Set chiefComplains = ?, presentHistory = ? Where id = ?";
+		
+		jdbcTemplate.update(sql, new Object[]{patientVisit.getChiefComplains(), patientVisit.getPresentHistory(), patientVisit.getId()});
+	}
+	
+	private RowMapper<PatientVisit> getMapper(){
+		RowMapper<PatientVisit> mapper = new RowMapper<PatientVisit>(){
+			public PatientVisit mapRow(ResultSet rs, int numRow) throws SQLException{
+				PatientVisit PatientVisit = new PatientVisit();
+				PatientVisit.setId(rs.getInt("id"));
+				PatientVisit.setRegNo(rs.getString("regNo"));
+				PatientVisit.setCreationDate(rs.getString("creationDate"));
+				PatientVisit.setChiefComplains(rs.getString("chiefComplains"));
+				PatientVisit.setPresentHistory(rs.getString("presenthistory"));
+				return PatientVisit;
+			}
+		};
+		return mapper;
 	}
 }

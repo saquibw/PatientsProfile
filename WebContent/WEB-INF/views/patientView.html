@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="main :: header">
+
+</head>
+<body>
+	<div th:replace="main :: menu"></div>
+	
+	<div id="patientVisitPage" class="form-group">
+		<form id="patientVisitForm" th:action="@{/updatepatientvisit}" th:object="${patientVisit}" method="post" accept-charset="utf-8">
+			<textarea th:name="id" th:text="${patientVisit.id}" class="hide"></textarea>
+			<table>
+				<tr>
+					<td><label>Registration No:</label> </td>
+					<td><label class="form-control" th:text="${patientVisit.regNo}" ></label></td>
+					<td><label>Visit Date:</label></td>
+					<td><label class="form-control" th:text="${patientVisit.creationDate}"></label></td>
+				</tr>
+				
+				<tr>
+					<td><label>Patient Name:</label> </td>
+					<td colspan="3"><label class="form-control" th:text="${patient.name}"></label></td>
+				</tr>
+				
+				<tr>
+					<td><label>Age:</label> </td>
+					<td><label class="form-control" th:text="${patient.age}"></label></td>
+					<td><label>Sex:</label></td>
+					<td><label class="form-control" th:text="${patient.sex}" ></label></td>
+				</tr>
+							
+				<tr>
+					<td><label>Chief Complains:</label></td>
+					<td colspan="3"><textarea rows="3" class="form-control" th:name="chiefComplains" th:text="${patientVisit.chiefComplains}" readonly="readonly"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td><label>H/O Present Illness:</label></td>
+					<td colspan="3"><textarea rows="3" class="form-control" th:name="presentHistory" th:text="${patientVisit.presentHistory}" readonly="readonly"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="3"></td>
+					<td><a id="patientVisitEdit" class="btn btn-primary btn-block edit">Edit</a><a id="patientVisitUpdate" class="btn btn-primary btn-block update hide">Update</a></td>
+				</tr>
+			</table>
+			</form>
+	</div>
+	
+	<hr></hr>
+	
+	<script th:inline="javascript">
+		$("document").ready(function() {
+			
+			$(".edit").click(function(){
+				$(this).addClass("hide");
+				$(this).next().removeClass("hide");
+				
+				var id = this.id;
+				var divName = id.split("Edit")[0] + "Page";
+				
+				$("#" + divName).find("textarea").prop("readonly", false)
+			});
+			
+			$(".update").click(function(){
+				$(this).addClass("hide");
+				$(this).prev().removeClass("hide");
+				
+				var id = this.id;
+				var divName = id.split("Update")[0] + "Page";
+				
+				$("#" + divName).find("textarea").prop("readonly", true)
+				
+				$("#patientVisitForm").submit();
+			});
+		});
+	</script>
+</body>
+</html>
