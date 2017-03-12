@@ -175,75 +175,31 @@
 	
 	
 	<script th:inline="javascript">
-	
-	$(document).ready(function() {
-		function selectRadioButton(element){
-			$('input:radio[name=' + element + ']')[1].checked = true;
-		}
-		
-		function updateRadioButtonValue(element, value){
-			$('input:radio[name=' + element + ']:checked').val(value);
-		}
-		
-		$(".liverValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		$(".spleenValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		$(".lymphNodeValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		$(".lungsValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		$(".heartValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		$(".nervousSystemValue").keyup(function(){
-			updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-		});
-		
-		$(".liverValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});		
-		$(".spleenValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});
-		$(".lymphNodeValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});
-		$(".lungsValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});
-		$(".heartValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});
-		$(".nervousSystemValue").focus(function(){
-			selectRadioButton(this.className.split(" ")[0]);
-		});
-	});		
-	
 	/*<![CDATA[*/
-	var visitId = [[${visitId}]];
-	/*]]>*/
-	
-	if(visitId){
-		PatientManager.saveToSessionStorage("visitId", visitId);
+	$(document).ready(function() {
+		ExamFindingsListener.attach();
 		
-	}else{
-		visitId = PatientManager.getFromSessionStorage("visitId");
-	}
-	
-	var regNo = PatientManager.getFromSessionStorage("regNo");
-	var patientName = PatientManager.getFromSessionStorage("patientName");
-	var patientAge = PatientManager.getFromSessionStorage("patientAge");
-	var patientSex = PatientManager.getFromSessionStorage("patientSex");
-	$("#visitId").val(visitId);
-	$("#regNo").val(regNo);
-	$("#patientName").val(patientName);
-	$("#patientAge").val(patientAge);
-	$("#patientSex").val(patientSex);
+		var visitId = [[${visitId}]];
+		
+		
+		if(visitId){
+			PatientManager.saveToSessionStorage("visitId", visitId);
+			
+		}else{
+			visitId = PatientManager.getFromSessionStorage("visitId");
+		}
+		
+		var regNo = PatientManager.getFromSessionStorage("regNo");
+		var patientName = PatientManager.getFromSessionStorage("patientName");
+		var patientAge = PatientManager.getFromSessionStorage("patientAge");
+		var patientSex = PatientManager.getFromSessionStorage("patientSex");
+		$("#visitId").val(visitId);
+		$("#regNo").val(regNo);
+		$("#patientName").val(patientName);
+		$("#patientAge").val(patientAge);
+		$("#patientSex").val(patientSex);
+	});			
+	/*]]>*/
 	</script>
 
 </body>

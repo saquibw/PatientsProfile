@@ -119,12 +119,6 @@ public class ExamFindings {
 	public void setLiverValue(String liverValue) {
 		this.liverValue = liverValue;
 	}
-	public String getSpleedValue() {
-		return spleenValue;
-	}
-	public void setSpleedValue(String spleedValue) {
-		this.spleenValue = spleedValue;
-	}
 	public String getSpleenValue() {
 		return spleenValue;
 	}

@@ -59,7 +59,7 @@ var PatientManager = (function(){
 							html += colStart + patient.patientName + colEnd;
 							html += colStart + patient.chiefComplains + colEnd;
 							html += colStart + patient.finalDiagnosis + colEnd;
-							html += colStart + "<a class='btn' href='viewpatient?visitId=" + patient.visitId + "'>View</a>" + colEnd;
+							html += colStart + "<a class='btn' href='viewpt?visitId=" + patient.visitId + "'>View</a>" + colEnd;
 							html += "</tr>";
 							
 							$("#patientVisitTable tbody").append(html);
@@ -70,10 +70,20 @@ var PatientManager = (function(){
 		});
 	};
 	
+	var selectRadioButton = function(element){
+		$('input:radio[name=' + element + ']')[1].checked = true;
+	}
+	
+	var updateRadioButtonValue = function(element, value){
+		$('input:radio[name=' + element + ']:checked').val(value);
+	}
+	
 	return{
 		saveToSessionStorage: saveToSessionStorage,
 		getFromSessionStorage:getFromSessionStorage,
 		setRegNo: setRegNo,
-		getPatientList: getPatientList
+		getPatientList: getPatientList,
+		selectRadioButton: selectRadioButton,
+		updateRadioButtonValue: updateRadioButtonValue
 	}
 })();
