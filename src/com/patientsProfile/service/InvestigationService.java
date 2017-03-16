@@ -39,7 +39,7 @@ private JdbcTemplate jdbcTemplate;
 					investigation.getWbcValue(), investigation.getPlateletsValue(), investigation.getBsRbsValue(), investigation.getBsFastingValue(), investigation.getHabfValue(), investigation.getHba1cValue(), 
 					investigation.getCreatininValue(), investigation.getbUreaValue(), investigation.getUricAcidValue(), investigation.getDcValue(), investigation.getBilirubinValue(), investigation.getSgptValue(), 
 					investigation.getSgotValue(), investigation.getAlkPhosValue(), investigation.getCholesterolValue(), investigation.getHdlValue(), investigation.getLdlValue(), investigation.getTgValue(), 
-					investigation.geteNaValue(), investigation.geteKValue(), investigation.geteClValue(), investigation.getECo2Value(), investigation.getProthrombinValue(), investigation.getBtValue(), 
+					investigation.geteNaValue(), investigation.geteKValue(), investigation.geteClValue(), investigation.geteCo2Value(), investigation.getProthrombinValue(), investigation.getBtValue(), 
 					investigation.getCtValue(), investigation.getRaValue(), investigation.getAlbuminValue(), investigation.getuAlbValue(), investigation.getuSugarValue(), investigation.getuPcValue(), 
 					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(), 
 					investigation.getPfCytologyValue(), investigation.getPfCellsCmmValue(), investigation.getPfLymphocytesValue(), investigation.getPfPolymorphValue(), investigation.getPfMalignantCellsValue(), 
@@ -52,9 +52,41 @@ private JdbcTemplate jdbcTemplate;
 		
 	}
 	
+	public void update(Investigation investigation){
+		String sql = "Update investigation set cxrValue = ?, xrayValue = ?, hbValue = ?, esrValue = ?, wbcValue = ?, plateletsValue = ?, bsRbsValue = ?, bsFastingValue = ?, habfValue = ?, hba1cValue = ?, "
+				+ "creatininValue = ?, bUreaValue = ?, uricAcidValue = ?, dcValue = ?, bilirubinValue = ?, sgptValue = ?, sgotValue = ?, alkPhosValue = ?, cholesterolValue = ?, hdlValue = ?, "
+				+ "ldlValue = ?, tgValue = ?, eNaValue = ?, eKValue = ?, eClValue = ?, eCo2Value = ?, prothrombinValue = ?, btValue = ?, ctValue = ?, raValue = ?, albuminValue = ?, uAlbValue = ?, "
+				+ "uSugarValue = ?, uPcValue = ?, uEcValue = ?, uRbcValue = ?, spuAfb1Value = ?, spuAfb2Value = ?, spuAfb3Value = ?, spuEosinophilsValue = ?, pfCytologyValue = ?, pfCellsCmmValue = ?, "
+				+ "pfLymphocytesValue = ?, pfPolymorphValue = ?, pfMalignantCellsValue = ?, pfAdaValue = ?, pfProteinValue = ?, pfSugarValue = ?, pfAfbValue = ?, usgValue = ?, ecgValue = ?, cardioValue = ?, "
+				+ "ctScanValue = ?, htctChestValue = ?, mriBrainValue = ?, mriSpineValue = ?, fnacValue = ?, endoscopyValue = ?, coloscopyValue = ?, bronchoscopyValue = ?, finalDiagnosis = ?, treatment = ? "
+				+ "Where visitId = ?";
+		
+		try {
+			jdbcTemplate.update(sql, new Object[]{investigation.getCxrValue(), investigation.getXrayValue(), investigation.getHbValue(), investigation.getEsrValue(), 
+					investigation.getWbcValue(), investigation.getPlateletsValue(), investigation.getBsRbsValue(), investigation.getBsFastingValue(), investigation.getHabfValue(), investigation.getHba1cValue(), 
+					investigation.getCreatininValue(), investigation.getbUreaValue(), investigation.getUricAcidValue(), investigation.getDcValue(), investigation.getBilirubinValue(), investigation.getSgptValue(), 
+					investigation.getSgotValue(), investigation.getAlkPhosValue(), investigation.getCholesterolValue(), investigation.getHdlValue(), investigation.getLdlValue(), investigation.getTgValue(), 
+					investigation.geteNaValue(), investigation.geteKValue(), investigation.geteClValue(), investigation.geteCo2Value(), investigation.getProthrombinValue(), investigation.getBtValue(), 
+					investigation.getCtValue(), investigation.getRaValue(), investigation.getAlbuminValue(), investigation.getuAlbValue(), investigation.getuSugarValue(), investigation.getuPcValue(), 
+					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(), 
+					investigation.getPfCytologyValue(), investigation.getPfCellsCmmValue(), investigation.getPfLymphocytesValue(), investigation.getPfPolymorphValue(), investigation.getPfMalignantCellsValue(), 
+					investigation.getPfAdaValue(), investigation.getPfProteinValue(), investigation.getPfSugarValue(), investigation.getPfAfbValue(), investigation.getUsgValue(), investigation.getEcgValue(), 
+					investigation.getCardioValue(), investigation.getCtScanValue(), investigation.getHtctChestValue(), investigation.getMriBrainValue(), investigation.getMriSpineValue(), investigation.getFnacValue(), 
+					investigation.getEndoscopyValue(), investigation.getColoscopyValue(), investigation.getBronchoscopyValue(), investigation.getFinalDiagnosis(), investigation.getTreatment(), investigation.getVisitId()});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Investigation getByVisitId(Integer visitId){
+		Investigation inv = new Investigation();
 		String sql = "Select * from investigation where visitId = ?";
-		return jdbcTemplate.queryForObject(sql, new Object[]{visitId}, getMapper());
+		try {
+			inv = jdbcTemplate.queryForObject(sql, new Object[]{visitId}, getMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return inv;
 	}
 	
 	private RowMapper<Investigation> getMapper(){
@@ -89,7 +121,7 @@ private JdbcTemplate jdbcTemplate;
 				investigation.seteNaValue(rs.getString("eNaValue")); 
 				investigation.seteKValue(rs.getString("eKValue")); 
 				investigation.seteClValue(rs.getString("eClValue")); 
-				investigation.setECo2Value(rs.getString("eCo2Value")); 
+				investigation.seteCo2Value(rs.getString("eCo2Value")); 
 				investigation.setProthrombinValue(rs.getString("prothrombinValue")); 
 				investigation.setBtValue(rs.getString("btValue")); 
 				investigation.setCtValue(rs.getString("ctValue")); 

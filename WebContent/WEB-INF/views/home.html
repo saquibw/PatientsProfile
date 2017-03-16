@@ -29,11 +29,11 @@
 				<th><label>Final Diagnosis</label></th>
 				<th></th>
 			</tr>
-		</thead>
-		<tbody>
 			<tr id="noPatientNotification">
 				<td colspan="6" style="text-align:center;white-space:nowrap">No patients available</td>
 			</tr>
+		</thead>
+		<tbody>
 		</tbody>
 			
 		</table>
@@ -42,6 +42,15 @@
 	<script>
 	$("document").ready(function() {
 		PatientManager.getPatientList("");
+		
+		var timeout = null;
+		$("#searchBox").on("keyup", function(e){
+			clearTimeout(timeout);
+			timeout = setTimeout(function(){
+				var param = $("#searchBox").val();
+				PatientManager.getPatientList(param);
+			},1500);			
+		});
 	});
 	</script>
 </body>

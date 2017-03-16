@@ -45,3 +45,20 @@ var ExamFindingsListener = (function(){
 	}
 	
 })();
+
+var InvestigationListener = (function(){
+	
+	var attach = function(){
+		$(".uRbcValue").keyup(function(){
+			PatientManager.updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		
+		$(".uRbcValue").focus(function(){
+			PatientManager.selectRadioButton(this.className.split(" ")[0]);
+		});
+	}
+	
+	return{
+		attach: attach
+	}
+})();

@@ -22,7 +22,7 @@
 			</tr>
 		</table>
 		
-		<div id="investigationsPage" class="form-group">
+		<div id="investigationPage" class="form-group">
 			<form id="investigationform" th:action="@{/saveinvestigation}" th:object="${investigation}" method="post" accept-charset="utf-8">
 				<textarea th:id="visitId" th:field="*{visitId}" class="hide"></textarea>
 				<table class="table">
@@ -271,33 +271,22 @@
 
 <script th:inline="javascript">
 $(document).ready(function() {
-	function selectRadioButton(element){
-		$('input:radio[name=' + element + ']')[1].checked = true;
-	}
 	
-	function updateRadioButtonValue(element, value){
-		$('input:radio[name=' + element + ']:checked').val(value);
-	}
+	InvestigationListener.attach();
 	
-	$(".uRbcValue").keyup(function(){
-		updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
-	});
-	
-	$(".uRbcValue").focus(function(){
-		selectRadioButton(this.className.split(" ")[0]);
-	});
+	var visitId = PatientManager.getFromSessionStorage("visitId");
+	var regNo = PatientManager.getFromSessionStorage("regNo");
+	var patientName = PatientManager.getFromSessionStorage("patientName");
+	var patientAge = PatientManager.getFromSessionStorage("patientAge");
+	var patientSex = PatientManager.getFromSessionStorage("patientSex");
+	$("#visitId").val(visitId);
+	$("#regNo").val(regNo);
+	$("#patientName").val(patientName);
+	$("#patientAge").val(patientAge);
+	$("#patientSex").val(patientSex);
 });
 
-var visitId = PatientManager.getFromSessionStorage("visitId");
-var regNo = PatientManager.getFromSessionStorage("regNo");
-var patientName = PatientManager.getFromSessionStorage("patientName");
-var patientAge = PatientManager.getFromSessionStorage("patientAge");
-var patientSex = PatientManager.getFromSessionStorage("patientSex");
-$("#visitId").val(visitId);
-$("#regNo").val(regNo);
-$("#patientName").val(patientName);
-$("#patientAge").val(patientAge);
-$("#patientSex").val(patientSex);
+
 </script>
 </body>
 

@@ -46,6 +46,8 @@ var PatientManager = (function(){
 		
 		request.done(function(response){
 			if(response.success){
+				$("#patientVisitTable tbody").empty();
+				$("#noPatientNotification").removeClass("hide");
 				var patientList = JSON.parse(response.patientList);
 				if(patientList){
 					if(patientList.length > 0){

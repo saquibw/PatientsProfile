@@ -1,5 +1,8 @@
 package com.patientsProfile.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,17 +39,23 @@ public class PatientViewController {
 	public String view(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 		
+		
 		return "redirect:/viewpatient";
 	}
 
 	@RequestMapping(value="/viewpatient", method=RequestMethod.GET)
-	public String viewPatient(ModelMap model, @ModelAttribute("visitId") String visitId){
+	public String viewPatient(ModelMap model, @ModelAttribute("visitId") String visitId, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		if(!visitId.equals("") && visitId != null){
+			session.setAttribute("viewerVisitId", visitId);
+		}else{
+			visitId = (String) session.getAttribute("viewerVisitId");
+		}
 		
 		PatientVisit visit = patientVisitService.getById(Integer.parseInt(visitId));		
 		Patient patient = patientService.getByRegNo(visit.getRegNo());
 		ExamFindings findings = examFindingsService.getByVisitId(Integer.parseInt(visitId));
 		Investigation investigation = investigationService.getByVisitId(Integer.parseInt(visitId));
-		System.out.println(investigation.getVisitId());
 		
 		model.addAttribute("patientVisit", visit);
 		model.addAttribute("patient", patient);
@@ -84,6 +93,8 @@ public class PatientViewController {
 	@RequestMapping(value="/updateinvestigation", produces="application/json", method=RequestMethod.POST)
 	public String updateInvestigation(Investigation investigation,
 			RedirectAttributes redirectAttrs){
+		
+		investigationService.update(investigation);
 		
 		Integer visitId = investigation.getVisitId();
 		redirectAttrs.addFlashAttribute("visitId", visitId);

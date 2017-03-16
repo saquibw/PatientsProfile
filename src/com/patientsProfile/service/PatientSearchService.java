@@ -25,11 +25,23 @@ public class PatientSearchService {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public List<PatientSearch> getLast50(){
-		String sql = "Select pv.id, pv.regNo, str_to_date(pv.creationDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, "
-				+ "(Select p.name from patients_profile.patient as p where p.regNo = pv.regNo) as name, "
-				+ "(Select i.finalDiagnosis from patients_profile.investigation as i where i.visitId = pv.id) as finalDiagnosis "
-				+ "from patients_profile.patient_visit as pv order by visitDate desc LIMIT 50";
+	public List<PatientSearch> get(){
+		String sql = "Select pv.id, pv.regNo, str_to_date(pv.creationDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, i.finalDiagnosis "
+				   + "from patients_profile.patient_visit pv "
+				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
+				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
+				   + "order by visitDate desc";
+		
+		return (List<PatientSearch>) jdbcTemplate.query(sql, getMapper());
+	}
+	
+	public List<PatientSearch> getBySearchParam(String param){
+		String sql = "Select pv.id, pv.regNo, str_to_date(pv.creationDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, i.finalDiagnosis "
+				   + "from patients_profile.patient_visit pv "
+				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
+				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
+				   + "Where p.name like '%"+ param + "%' "
+				   + "order by visitDate desc";
 		
 		return (List<PatientSearch>) jdbcTemplate.query(sql, getMapper());
 	}

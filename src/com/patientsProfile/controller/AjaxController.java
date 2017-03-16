@@ -1,5 +1,6 @@
 package com.patientsProfile.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +42,13 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping(value="/getPatientList", method=RequestMethod.GET, produces="application/json")
 	public JsonObject getPatientList(@RequestParam("searchCriteria") String searchCriteria){
-		List<PatientSearch> patientList = searchService.getLast50();
+		List<PatientSearch> patientList = new ArrayList<>();
+		if(!searchCriteria.equals("")){
+			patientList = searchService.getBySearchParam(searchCriteria);
+		}else{
+			patientList = searchService.get();
+		}
+		
 		Gson gson = new Gson();
 		String output = gson.toJson(patientList);
 				

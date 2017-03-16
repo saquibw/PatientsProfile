@@ -63,9 +63,6 @@ public class RegistrationController {
 		}
 		
 		redirectAttrs.addFlashAttribute("regNo", patient.getRegNo());
-		redirectAttrs.addFlashAttribute("patientName", patient.getName());
-		redirectAttrs.addFlashAttribute("patientAge", patient.getAge());
-		redirectAttrs.addFlashAttribute("patientSex", patient.getSex());
 		
 		return "redirect:/patientvisit";
 	}
@@ -73,17 +70,22 @@ public class RegistrationController {
 	//View patient visit page
 	@RequestMapping(value="/patientvisit", method=RequestMethod.GET)
 	public String viewPatientVisitPage(@ModelAttribute("regNo") String regNo,
-			@ModelAttribute("patientName") String patientName,
-			@ModelAttribute("patientAge") String patientAge, 
-			@ModelAttribute("patientSex") String patientSex, 
+			@ModelAttribute("visitId") String visitId,
 			ModelMap model){
+		
+		if(regNo.equals("") || regNo == null){
+			PatientVisit visit = patientVisitService.getById(Integer.parseInt(visitId));
+			regNo = visit.getRegNo();
+		}
+		
+		Patient patient = patientService.getByRegNo(regNo);
 		
 		model.addAttribute("pageName", "Patient Visit");
 		model.addAttribute("patientVisit", new PatientVisit());
 		model.addAttribute("regNo", regNo);
-		model.addAttribute("patientName", patientName);
-		model.addAttribute("patientAge", patientAge);
-		model.addAttribute("patientSex", patientSex);
+		model.addAttribute("patientName", patient.getName());
+		model.addAttribute("patientAge", patient.getAge());
+		model.addAttribute("patientSex", patient.getSex());
 		
 		return "patientVisit";
 	}

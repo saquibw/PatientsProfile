@@ -70,17 +70,17 @@ body {
 	/* width: auto !important; */
 }
 
-#investigationsPage{
+#investigationPage{
 	margin: 40px auto;
 	width: 1150px;
 }
 
-#investigationsPage td{
+#investigationPage td{
 	width: 1%;
     white-space: nowrap;
 }
 
-#investigationsPage input[type=text] {
+#investigationPage input[type=text] {
 	float:left;
 }
 
@@ -117,4 +117,9 @@ body {
 #patientVisitTable tbody{
 	overflow: scroll;
     height: 100px;
+}
+
+.followUpSection{
+	margin: 40px auto;
+	width: 600px;
 }

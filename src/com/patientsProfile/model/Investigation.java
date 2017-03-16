@@ -227,10 +227,10 @@ public class Investigation {
 	public void seteClValue(String eClValue) {
 		this.eClValue = eClValue;
 	}
-	public String getECo2Value() {
+	public String geteCo2Value() {
 		return eCo2Value;
 	}
-	public void setECo2Value(String eCo2Value) {
+	public void seteCo2Value(String eCo2Value) {
 		this.eCo2Value = eCo2Value;
 	}
 	public String getProthrombinValue() {
@@ -448,5 +448,5 @@ public class Investigation {
 	}
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
-	}	
+	}
 }

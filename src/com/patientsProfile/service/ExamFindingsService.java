@@ -28,7 +28,7 @@ private JdbcTemplate jdbcTemplate;
 		String sql = "Insert Into exam_findings (visitId, anaemiaValue, neckVainsValue, jaundiceValue, clubingValue, cyanosisValue, koilonychiaValue, "
 				+ "oedemaValue, gynaecomastiaValue, ascitisValue, palmarErythemaValue, temperatureValue, flappingTremorValue, pulseValue, bpValue, liverValue, "
 				+ "spleenValue, kidneyValue, abdomenValue, lowerAbdomenValue, mcTendernessValue, lymphNodeValue, lungsValue, heartValue, nervousSystemValue, provisionalDiagnosis )"
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result= 0;
 		try {
@@ -62,9 +62,14 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	public ExamFindings getByVisitId(Integer visitId){
+		ExamFindings findings = new ExamFindings();
 		String sql = "Select * from exam_findings where visitId = ?";
-		
-		return jdbcTemplate.queryForObject(sql,new Object[]{visitId}, getMapper());
+		try {
+			findings = jdbcTemplate.queryForObject(sql,new Object[]{visitId}, getMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return findings;
 	}
 	
 	private RowMapper<ExamFindings> getMapper(){
