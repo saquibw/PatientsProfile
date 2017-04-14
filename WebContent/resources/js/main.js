@@ -73,11 +73,14 @@ var PatientManager = (function(){
 	};
 	
 	var selectRadioButton = function(element){
-		$('input:radio[name=' + element + ']')[1].checked = true;
+		console.log("Select element: " + element);
+		var input = $('input:radio[name=' + element + ']')[1];
+		input.checked = true;
 	}
 	
 	var updateRadioButtonValue = function(element, value){
-		$('input:radio[name=' + element + ']:checked').val(value);
+		var input = $('input:radio[name=' + element + ']:checked');
+		input.val(value);
 	}
 	
 	return{
