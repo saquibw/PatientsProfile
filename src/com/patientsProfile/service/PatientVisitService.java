@@ -27,13 +27,13 @@ public class PatientVisitService {
 
 	@SuppressWarnings("finally")
 	public Integer create(PatientVisit patientVisit){
-		String sql = "Insert Into patient_visit (regNo, chiefComplains, presentHistory, creationDate)"
+		String sql = "Insert Into patient_visit (regNo, chiefComplains, presentHistory, visitDate)"
 				+ "values (?,?,?,?)";
 
 		int result = 0;
 		try {
 			result = jdbcTemplate.update(sql, new Object[]{patientVisit.getRegNo() , patientVisit.getChiefComplains(), 
-					patientVisit.getPresentHistory(), patientVisit.getCreationDate()});
+					patientVisit.getPresentHistory(), patientVisit.getVisitDate()});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -66,13 +66,20 @@ public class PatientVisitService {
 		jdbcTemplate.update(sql, new Object[]{patientVisit.getChiefComplains(), patientVisit.getPresentHistory(), patientVisit.getId()});
 	}
 	
+	public Integer getVisitCountByRegNo(String regNo){
+		String sql = "Select COUNT(*) From patient_visit Where regNo = ?";		
+		Integer count = jdbcTemplate.queryForObject(sql, new Object[]{regNo}, Integer.class);
+		
+		return count;
+	}
+	
 	private RowMapper<PatientVisit> getMapper(){
 		RowMapper<PatientVisit> mapper = new RowMapper<PatientVisit>(){
 			public PatientVisit mapRow(ResultSet rs, int numRow) throws SQLException{
 				PatientVisit PatientVisit = new PatientVisit();
 				PatientVisit.setId(rs.getInt("id"));
 				PatientVisit.setRegNo(rs.getString("regNo"));
-				PatientVisit.setCreationDate(rs.getString("creationDate"));
+				PatientVisit.setVisitDate(rs.getString("visitDate"));
 				PatientVisit.setChiefComplains(rs.getString("chiefComplains"));
 				PatientVisit.setPresentHistory(rs.getString("presenthistory"));
 				return PatientVisit;

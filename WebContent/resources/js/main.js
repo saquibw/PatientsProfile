@@ -59,6 +59,8 @@ var PatientManager = (function(){
 							html += colStart + patient.visitDate + colEnd;
 							html += colStart + patient.regNo + colEnd;
 							html += colStart + patient.patientName + colEnd;
+							html += colStart + patient.contactNo + colEnd;
+							html += colStart + patient.zilla + colEnd;
 							html += colStart + patient.chiefComplains + colEnd;
 							html += colStart + patient.finalDiagnosis + colEnd;
 							html += colStart + "<a class='btn' href='viewpt?visitId=" + patient.visitId + "'>View</a>" + colEnd;

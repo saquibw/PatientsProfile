@@ -23,7 +23,7 @@
 					<td><label>Registration No:</label> </td>
 					<td><label class="form-control" th:text="${patientVisit.regNo}" ></label></td>
 					<td><label>Visit Date:</label></td>
-					<td><label class="form-control" th:text="${patientVisit.creationDate}"></label></td>
+					<td><label class="form-control" th:text="${patientVisit.visitDate}"></label></td>
 				</tr>
 				
 				<tr>
@@ -538,6 +538,7 @@
 			
 			$("input[type=radio]").prop('disabled', true);
 			$("body").find("input[type=text]").prop("readonly", true);
+			$("body").find("textarea").prop("readonly", true);
 			ExamFindingsListener.attach();
 			InvestigationListener.attach();
 			

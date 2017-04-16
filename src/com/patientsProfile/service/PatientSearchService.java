@@ -26,21 +26,24 @@ public class PatientSearchService {
 	}
 	
 	public List<PatientSearch> get(){
-		String sql = "Select pv.id, pv.regNo, str_to_date(pv.creationDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, i.finalDiagnosis "
+		String sql = "Select pv.id, pv.regNo, str_to_date(pv.visitDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
 				   + "from patients_profile.patient_visit pv "
 				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
 				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
-				   + "order by visitDate desc";
+				   + "order by visitDate desc, pv.creationDate desc";
 		
 		return (List<PatientSearch>) jdbcTemplate.query(sql, getMapper());
 	}
 	
 	public List<PatientSearch> getBySearchParam(String param){
-		String sql = "Select pv.id, pv.regNo, str_to_date(pv.creationDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, i.finalDiagnosis "
+		String sql = "Select pv.id, pv.regNo, str_to_date(pv.visitDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
 				   + "from patients_profile.patient_visit pv "
 				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
 				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
 				   + "Where p.name like '%"+ param + "%' "
+				   + "OR p.contactNo like '%"+ param + "%' "
+				   + "OR p.zilla like '%"+ param + "%' "
+				   + "OR i.finalDiagnosis like '%"+ param + "%' "
 				   + "order by visitDate desc";
 		
 		return (List<PatientSearch>) jdbcTemplate.query(sql, getMapper());
@@ -52,6 +55,8 @@ public class PatientSearchService {
 				PatientSearch patientSearch = new PatientSearch();
 				patientSearch.setVisitId(rs.getInt("id"));
 				patientSearch.setPatientName(rs.getString("name"));
+				patientSearch.setContactNo(rs.getString("contactNo"));
+				patientSearch.setZilla(rs.getString("zilla"));
 				patientSearch.setRegNo(rs.getString("regNo"));
 				patientSearch.setVisitDate(rs.getString("visitDate"));
 				patientSearch.setChiefComplains(rs.getString("chiefComplains"));

@@ -25,13 +25,13 @@ public class PatientService {
 	
 	@SuppressWarnings("finally")
 	public Integer create(Patient patient){
-		String sql = "Insert Into patient (regNo, creationDate, name, age, sex, profession, contactNo, area, thana, zilla, pastHistory, familyHistory, smokingHistory, drugHistory)"
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?, ?)";
+		String sql = "Insert Into patient (regNo, creationDate, name, age, sex, profession, contactNo, nid, area, thana, zilla, pastHistory, familyHistory, smokingHistory, drugHistory)"
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result= 0;
 		try {
 			result = jdbcTemplate.update(sql, new Object[]{patient.getRegNo(), patient.getCreationDate(), patient.getName(), patient.getAge(), 
-					patient.getSex(), patient.getProfession(), patient.getContactNo(), patient.getArea(), patient.getThana(), patient.getZilla(), 
+					patient.getSex(), patient.getProfession(), patient.getContactNo(), patient.getNid(), patient.getArea(), patient.getThana(), patient.getZilla(), 
 					patient.getPastHistory(), patient.getFamilyHistory(), patient.getSmokingHistory(), patient.getDrugHistory()});
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,6 +56,7 @@ public class PatientService {
 				patient.setSex(rs.getString("sex"));
 				patient.setProfession(rs.getString("profession"));
 				patient.setContactNo(rs.getString("contactNo"));
+				patient.setNid(rs.getString("nid"));
 				patient.setArea(rs.getString("area"));
 				patient.setThana(rs.getString("thana"));
 				patient.setZilla(rs.getString("zilla"));

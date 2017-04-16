@@ -77,10 +77,11 @@ public class RegistrationController {
 			PatientVisit visit = patientVisitService.getById(Integer.parseInt(visitId));
 			regNo = visit.getRegNo();
 		}
+		Integer visitCount = patientVisitService.getVisitCountByRegNo(regNo);
 		
 		Patient patient = patientService.getByRegNo(regNo);
 		
-		model.addAttribute("pageName", "Patient Visit");
+		model.addAttribute("pageName", "Patient Visit: " + Integer.toString(visitCount+1));
 		model.addAttribute("patientVisit", new PatientVisit());
 		model.addAttribute("regNo", regNo);
 		model.addAttribute("patientName", patient.getName());

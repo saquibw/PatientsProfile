@@ -7,6 +7,7 @@ public class Patient {
 	private String sex;
 	private String profession;
 	private String contactNo;
+	private String nid;
 	private String area;
 	private String thana;
 	private String zilla;
@@ -99,6 +100,12 @@ public class Patient {
 	}
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	public String getNid() {
+		return nid;
+	}
+	public void setNid(String nid) {
+		this.nid = nid;
 	}
 	
 	

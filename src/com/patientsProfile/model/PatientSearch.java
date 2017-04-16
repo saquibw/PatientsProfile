@@ -5,6 +5,8 @@ public class PatientSearch {
 	private String visitDate;
 	private String regNo;
 	private String patientName;
+	private String contactNo;
+	private String zilla;
 	private String chiefComplains;
 	private String finalDiagnosis;
 	public Integer getVisitId() {
@@ -42,6 +44,18 @@ public class PatientSearch {
 	}
 	public void setFinalDiagnosis(String finalDiagnosis) {
 		this.finalDiagnosis = finalDiagnosis;
+	}
+	public String getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+	public String getZilla() {
+		return zilla;
+	}
+	public void setZilla(String zilla) {
+		this.zilla = zilla;
 	}
 	
 	

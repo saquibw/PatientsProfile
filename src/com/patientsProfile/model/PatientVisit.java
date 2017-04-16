@@ -5,7 +5,7 @@ public class PatientVisit {
 	private String regNo;
 	private String chiefComplains;
 	private String presentHistory;
-	private String creationDate;
+	private String visitDate;
 	
 	public Integer getId() {
 		return id;
@@ -31,12 +31,11 @@ public class PatientVisit {
 	public void setPresentHistory(String presentHistory) {
 		this.presentHistory = presentHistory;
 	}
-	public String getCreationDate() {
-		return creationDate;
+	public String getVisitDate() {
+		return visitDate;
 	}
-	public void setCreationDate(String creationDate) {
-		this.creationDate = creationDate;
+	public void setVisitDate(String visitDate) {
+		this.visitDate = visitDate;
 	}
-	
 	
 }
