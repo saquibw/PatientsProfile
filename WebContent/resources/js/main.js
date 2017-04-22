@@ -27,7 +27,7 @@ var PatientManager = (function(){
 				if(month.split("")[0]=="0"){
 					month = month.split("")[1];
 				}
-				var displayRegNo = year + "/" + day + "/" + months[month] + "/" + regNo;
+				var displayRegNo = year + "/" + day + "/" + months[parseInt(month)-1] + "/" + regNo;
 				
 				$("#regNo").val(displayRegNo);
 			}

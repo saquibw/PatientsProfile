@@ -112,6 +112,27 @@ var ExamFindingsListener = (function(){
 		$(".flappingTremorValue").focus(function(){
 			PatientManager.selectRadioButton(this.className.split(" ")[0]);
 		});
+		
+		$(".mcTendernessValue").keyup(function(){
+			PatientManager.updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".mcTendernessValue").focus(function(){
+			PatientManager.selectRadioButton(this.className.split(" ")[0]);
+		});
+		
+		$(".lowerAbdomenValue").keyup(function(){
+			PatientManager.updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".lowerAbdomenValue").focus(function(){
+			PatientManager.selectRadioButton(this.className.split(" ")[0]);
+		});
+		
+		$(".uSugarValue").keyup(function(){
+			PatientManager.updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		$(".uSugarValue").focus(function(){
+			PatientManager.selectRadioButton(this.className.split(" ")[0]);
+		});
 	}
 	
 	return{

@@ -38,8 +38,7 @@ public class PatientViewController {
 	@RequestMapping(value="/viewpt", method=RequestMethod.GET)
 	public String view(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
 		redirectAttrs.addFlashAttribute("visitId", visitId);
-		
-		
+				
 		return "redirect:/viewpatient";
 	}
 

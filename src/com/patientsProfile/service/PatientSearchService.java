@@ -26,7 +26,7 @@ public class PatientSearchService {
 	}
 	
 	public List<PatientSearch> get(){
-		String sql = "Select pv.id, pv.regNo, str_to_date(pv.visitDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
+		String sql = "Select pv.id, pv.regNo, DATE_FORMAT(str_to_date(pv.visitDate, '%d/%m/%Y'),'%d-%M-%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
 				   + "from patients_profile.patient_visit pv "
 				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
 				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
@@ -36,7 +36,7 @@ public class PatientSearchService {
 	}
 	
 	public List<PatientSearch> getBySearchParam(String param){
-		String sql = "Select pv.id, pv.regNo, str_to_date(pv.visitDate, '%d/%m/%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
+		String sql = "Select pv.id, pv.regNo, DATE_FORMAT(str_to_date(pv.visitDate, '%d/%m/%Y'),'%d-%M-%Y') as visitDate, pv.chiefComplains, p.name, p.contactNo, p.zilla, i.finalDiagnosis "
 				   + "from patients_profile.patient_visit pv "
 				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
 				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "

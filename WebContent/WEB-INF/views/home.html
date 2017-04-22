@@ -19,8 +19,9 @@
 			<span class="input-group-addon"><i class="glyphicon glyphicon-search "></i></span>
 			
 		</div>
-		<table class="table-bordered table-hover" id="patientVisitTable">
-		<thead>
+		<div id="patientVisitTableHolder">
+			<table class="table-bordered table-hover" id="patientVisitTable">
+			<thead>
 			<tr>
 				<th><label>Date</label></th>
 				<th><label>Registration No</label></th>
@@ -34,11 +35,13 @@
 			<tr id="noPatientNotification">
 				<td colspan="6" style="text-align:center;white-space:nowrap">No patients available</td>
 			</tr>
-		</thead>
-		<tbody>
-		</tbody>
+			</thead>
+			<tbody>
+			</tbody>
 			
 		</table>
+		</div>
+		
 	</div>
 	
 	<script>
@@ -51,7 +54,7 @@
 			timeout = setTimeout(function(){
 				var param = $("#searchBox").val();
 				PatientManager.getPatientList(param);
-			},1500);			
+			},1000);			
 		});
 	});
 	</script>
