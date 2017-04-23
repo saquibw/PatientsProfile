@@ -23,7 +23,7 @@
 		</session-management>
 
 		<logout invalidate-session="true" 
-			logout-success-url="/logout/success"
+			logout-success-url="/login"
 			logout-url="/logout" />
 	</http>
 
