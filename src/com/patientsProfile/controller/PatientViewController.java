@@ -41,6 +41,15 @@ public class PatientViewController {
 				
 		return "redirect:/viewpatient";
 	}
+	
+	@RequestMapping(value="/deletept", method=RequestMethod.GET)
+	public String deleteVisit(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
+		//redirectAttrs.addFlashAttribute("visitId", visitId);
+		if(visitId != null){
+			patientVisitService.deleteById(Integer.parseInt(visitId));
+		}		
+		return "redirect:/home";
+	}
 
 	@RequestMapping(value="/viewpatient", method=RequestMethod.GET)
 	public String viewPatient(ModelMap model, @ModelAttribute("visitId") String visitId, HttpServletRequest request){

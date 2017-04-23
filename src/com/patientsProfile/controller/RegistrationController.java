@@ -49,7 +49,7 @@ public class RegistrationController {
 		int index = 0;
 		for(int i=0;i<months.length;i++){
 			if(months[i].equals(monthString)){
-				index = i;
+				index = i+1;
 				break;
 			}
 		}

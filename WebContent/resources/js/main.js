@@ -63,7 +63,8 @@ var PatientManager = (function(){
 							html += colStart + patient.zilla + colEnd;
 							html += colStart + patient.chiefComplains + colEnd;
 							html += colStart + patient.finalDiagnosis + colEnd;
-							html += colStart + "<a class='btn' href='viewpt?visitId=" + patient.visitId + "'>View</a>" + colEnd;
+							html += colStart + "<a class='btn btn-primary' href='viewpt?visitId=" + patient.visitId + "'>View</a>" + colEnd;
+							html += colStart + "<a class='btn btn-danger' href='deletept?visitId=" + patient.visitId + "'>Delete</a>" + colEnd;
 							html += "</tr>";
 							
 							$("#patientVisitTable tbody").append(html);

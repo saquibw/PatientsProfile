@@ -73,6 +73,12 @@ public class PatientVisitService {
 		return count;
 	}
 	
+	public Integer deleteById(Integer id){
+		String sql = "Delete From patient_visit Where id = ?";
+		
+		return jdbcTemplate.update(sql, new Object[]{id});
+	}
+	
 	private RowMapper<PatientVisit> getMapper(){
 		RowMapper<PatientVisit> mapper = new RowMapper<PatientVisit>(){
 			public PatientVisit mapRow(ResultSet rs, int numRow) throws SQLException{
