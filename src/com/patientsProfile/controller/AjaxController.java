@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.patientsProfile.model.Patient;
 import com.patientsProfile.model.PatientSearch;
 import com.patientsProfile.service.PatientSearchService;
+import com.patientsProfile.service.PatientService;
 import com.patientsProfile.service.RegistrationNoGeneratorService;
 
 
@@ -27,6 +29,9 @@ public class AjaxController {
 	
 	@Autowired
 	private PatientSearchService searchService;
+	
+	@Autowired
+	private PatientService patientService;
 
 	@ResponseBody
 	@RequestMapping(value="/getRegNo", method=RequestMethod.GET, produces="application/json")
@@ -40,13 +45,32 @@ public class AjaxController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/getPatientList", method=RequestMethod.GET, produces="application/json")
-	public JsonObject getPatientList(@RequestParam("searchCriteria") String searchCriteria){
+	@RequestMapping(value="/getPatientVisitList", method=RequestMethod.GET, produces="application/json")
+	public JsonObject getPatientVisitList(@RequestParam("searchCriteria") String searchCriteria){
 		List<PatientSearch> patientList = new ArrayList<>();
 		if(!searchCriteria.equals("")){
 			patientList = searchService.getBySearchParam(searchCriteria);
 		}else{
 			patientList = searchService.get();
+		}
+		
+		Gson gson = new Gson();
+		String output = gson.toJson(patientList);
+				
+		JsonObject obj = new JsonObject();
+		obj.addProperty("success", true);
+		obj.addProperty("patientList", output);
+		return obj;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getPatientViewList", method=RequestMethod.GET, produces="application/json")
+	public JsonObject getPatientViewList(@RequestParam("searchCriteria") String searchCriteria){
+		List<Patient> patientList = new ArrayList<>();
+		if(!searchCriteria.equals("")){
+			patientList =  patientService.getBySearchParam(searchCriteria);
+		}else{
+			patientList = patientService.getAll();
 		}
 		
 		Gson gson = new Gson();

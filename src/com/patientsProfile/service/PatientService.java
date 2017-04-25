@@ -2,6 +2,7 @@ package com.patientsProfile.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -44,6 +45,34 @@ public class PatientService {
 		String sql = "Select * From patient where regNo = ?";
 		
 		return jdbcTemplate.queryForObject(sql, new Object[]{regNo}, getMapper());
+	}
+	
+	public List<Patient> getAll(){
+		String sql = "Select * From patient order by str_to_date(creationDate, '%d/%m/%Y') desc";
+		
+		return jdbcTemplate.query(sql, getMapper());
+	}
+	
+	public List<Patient> getBySearchParam(String param){
+		String sql = "Select * From patient Where regNo like '%"+ param + "%' "
+				+ "OR name like '%"+ param + "%' "
+				+ "OR age like '%"+ param + "%' "
+				+ "OR sex like '%"+ param + "%' "
+				+ "OR profession like '%"+ param + "%' "
+				+ "OR contactNo like '%"+ param + "%' "
+				+ "OR nid like '%"+ param + "%' "
+				+ "OR area like '%"+ param + "%' "
+				+ "OR thana like '%"+ param + "%' "
+				+ "OR zilla like '%"+ param + "%' "
+				+ "order by str_to_date(creationDate, '%d/%m/%Y') desc";
+		
+		return jdbcTemplate.query(sql, getMapper());
+	}
+	
+	public Integer deleteBy(String regNo){
+		String sql = "Delete From patient Where regNo = ?";
+		
+		return jdbcTemplate.update(sql, new Object[]{regNo});
 	}
 	
 	private RowMapper<Patient> getMapper(){

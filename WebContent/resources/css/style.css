@@ -21,6 +21,15 @@ body {
 	padding: 5px;
 }
 
+#patientViewPage{
+	margin: 10px auto;
+	width: 900px;
+}
+
+#patientViewPage td{
+	padding: 5px;
+}
+
 #patientVisitPage{
 	margin: 10px auto;
 	width: 700px;
@@ -110,11 +119,31 @@ body {
 	width: 250px;
 }
 
-#patientVisitTable td{
+#patientVisitTable th,td{
 	padding: 5px;
 }
 
 #patientVisitTableHolder{
+	float:left;
+	width:100%;
+	overflow-y: auto;
+	height: 400px;
+}
+
+#patientViewer{
+	margin: 40px auto;
+	width: 1000px;
+}
+
+#patientViewer table{
+	width:100%;
+}
+
+#patientViewTable th,td{
+	padding: 5px;
+}
+
+#patientViewTableHolder{
 	float:left;
 	width:100%;
 	overflow-y: auto;

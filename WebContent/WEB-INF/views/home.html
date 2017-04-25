@@ -9,7 +9,7 @@
 	
 	<div id="homePage">
 		<a class="btn btn-primary btn-lg" href="registration">Create Patient</a>
-		<a class="btn btn-primary btn-lg" href="#">View Patient</a>
+		<a class="btn btn-primary btn-lg" href="viewpatient">View Patient</a>
 	</div>
 	
 	<div id="visitViewer">
@@ -23,7 +23,7 @@
 			<table class="table-bordered table-hover" id="patientVisitTable">
 			<thead>
 			<tr>
-				<th><label>Date</label></th>
+				<th><label>Visit Date</label></th>
 				<th><label>Registration No</label></th>
 				<th><label>Name</label></th>
 				<th><label>Contact No</label></th>
@@ -47,14 +47,14 @@
 	
 	<script>
 	$("document").ready(function() {
-		PatientManager.getPatientList("");
+		PatientManager.getPatientVisitList("");
 		
 		var timeout = null;
 		$("#searchBox").on("keyup", function(e){
 			clearTimeout(timeout);
 			timeout = setTimeout(function(){
 				var param = $("#searchBox").val();
-				PatientManager.getPatientList(param);
+				PatientManager.getPatientVisitList(param);
 			},1000);			
 		});
 	});

@@ -21,7 +21,7 @@ import com.patientsProfile.service.PatientService;
 import com.patientsProfile.service.PatientVisitService;
 
 @Controller
-public class PatientViewController {
+public class PatientVisitViewController {
 	
 	@Autowired
 	private PatientService patientService;
@@ -35,23 +35,14 @@ public class PatientViewController {
 	@Autowired
 	private InvestigationService investigationService;
 	
-	@RequestMapping(value="/viewpt", method=RequestMethod.GET)
+	@RequestMapping(value="/viewvt", method=RequestMethod.GET)
 	public String view(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 				
-		return "redirect:/viewpatient";
-	}
-	
-	@RequestMapping(value="/deletept", method=RequestMethod.GET)
-	public String deleteVisit(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
-		//redirectAttrs.addFlashAttribute("visitId", visitId);
-		if(visitId != null){
-			patientVisitService.deleteById(Integer.parseInt(visitId));
-		}		
-		return "redirect:/home";
+		return "redirect:/viewpatientvisit";
 	}
 
-	@RequestMapping(value="/viewpatient", method=RequestMethod.GET)
+	@RequestMapping(value="/viewpatientvisit", method=RequestMethod.GET)
 	public String viewPatient(ModelMap model, @ModelAttribute("visitId") String visitId, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		if(!visitId.equals("") && visitId != null){
@@ -70,9 +61,17 @@ public class PatientViewController {
 		model.addAttribute("examFindings", findings);
 		model.addAttribute("investigation", investigation);
 		
-		model.addAttribute("pageName", "View Patient");
+		model.addAttribute("pageName", "View Patient Visit");
 				
-		return "patientView";
+		return "patientVisitView";
+	}
+	
+	@RequestMapping(value="/deletepatientvisit", method=RequestMethod.GET)
+	public String deleteVisit(@ModelAttribute("visitId") String visitId, RedirectAttributes redirectAttrs){
+		if(visitId != null){
+			patientVisitService.deleteById(Integer.parseInt(visitId));
+		}		
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value="/updatepatientvisit", produces="application/json", method=RequestMethod.POST)
@@ -84,7 +83,7 @@ public class PatientViewController {
 		Integer visitId = patientVisit.getId();
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 		
-		return "redirect:/viewpatient";
+		return "redirect:/viewpatientvisit";
 	}
 	
 	@RequestMapping(value="/updateexamfindings", produces="application/json", method=RequestMethod.POST)
@@ -95,7 +94,7 @@ public class PatientViewController {
 		
 		Integer visitId = findings.getVisitId();
 		redirectAttrs.addFlashAttribute("visitId", visitId);
-		return "redirect:/viewpatient";
+		return "redirect:/viewpatientvisit";
 	}
 	
 	@RequestMapping(value="/updateinvestigation", produces="application/json", method=RequestMethod.POST)
@@ -106,6 +105,6 @@ public class PatientViewController {
 		
 		Integer visitId = investigation.getVisitId();
 		redirectAttrs.addFlashAttribute("visitId", visitId);
-		return "redirect:/viewpatient";
+		return "redirect:/viewpatientvisit";
 	}
 }

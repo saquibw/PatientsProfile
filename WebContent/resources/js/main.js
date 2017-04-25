@@ -34,10 +34,10 @@ var PatientManager = (function(){
 		});
 	}
 	
-	var getPatientList = function(searchCriteria){
+	var getPatientVisitList = function(searchCriteria){
 		var request = $.ajax({
 			type: "GET",
-			url: "getPatientList",
+			url: "getPatientVisitList",
 			dataType: 'JSON',
 			data: {
 				"searchCriteria": searchCriteria
@@ -63,11 +63,55 @@ var PatientManager = (function(){
 							html += colStart + patient.zilla + colEnd;
 							html += colStart + patient.chiefComplains + colEnd;
 							html += colStart + patient.finalDiagnosis + colEnd;
-							html += colStart + "<a class='btn btn-primary' href='viewpt?visitId=" + patient.visitId + "'>View</a>" + colEnd;
-							html += colStart + "<a class='btn btn-danger' href='deletept?visitId=" + patient.visitId + "'>Delete</a>" + colEnd;
+							html += colStart + "<a class='btn btn-primary' href='viewvt?visitId=" + patient.visitId + "'>View</a>" + colEnd;
+							html += colStart + "<a class='btn btn-danger' href='deletepatientvisit?visitId=" + patient.visitId + "'>Delete</a>" + colEnd;
 							html += "</tr>";
 							
 							$("#patientVisitTable tbody").append(html);
+						});
+					}
+				}
+			}
+		});
+	};
+	
+	var getPatientList = function(searchCriteria){
+		var request = $.ajax({
+			type: "GET",
+			url: "getPatientViewList",
+			dataType: 'JSON',
+			data: {
+				"searchCriteria": searchCriteria
+			}
+		});
+		
+		request.done(function(response){
+			if(response.success){
+				$("#patientViewTable tbody").empty();
+				$("#noPatientNotification").removeClass("hide");
+				var patientList = JSON.parse(response.patientList);
+				if(patientList){
+					if(patientList.length > 0){
+						$("#noPatientNotification").addClass("hide");
+						$.each(patientList, function(key, patient){
+							var colStart = "<td>";
+							var colEnd = "</td>";
+							var html = "<tr>";
+							html += colStart + patient.regNo + colEnd;
+							html += colStart + patient.name + colEnd;
+							html += colStart + patient.age + colEnd;
+							html += colStart + patient.sex + colEnd;
+							html += colStart + patient.profession + colEnd;
+							html += colStart + patient.contactNo + colEnd;
+							html += colStart + patient.nid + colEnd;
+							html += colStart + patient.area + colEnd;
+							html += colStart + patient.thana + colEnd;
+							html += colStart + patient.zilla + colEnd;
+							html += colStart + "<a class='btn btn-primary' href='viewpatient?regNo=" + patient.regNo + "'>View</a>" + colEnd;
+							html += colStart + "<a class='btn btn-danger' href='deletepatient?regNo=" + patient.regNo + "'>Delete</a>" + colEnd;
+							html += "</tr>";
+							
+							$("#patientViewTable tbody").append(html);
 						});
 					}
 				}
@@ -90,6 +134,7 @@ var PatientManager = (function(){
 		saveToSessionStorage: saveToSessionStorage,
 		getFromSessionStorage:getFromSessionStorage,
 		setRegNo: setRegNo,
+		getPatientVisitList: getPatientVisitList,
 		getPatientList: getPatientList,
 		selectRadioButton: selectRadioButton,
 		updateRadioButtonValue: updateRadioButtonValue
