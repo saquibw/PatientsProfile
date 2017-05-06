@@ -50,9 +50,6 @@ public class Investigation {
 	private String pfCytologyTcValue;
 	private String pfCytologyDcPValue;
 	private String pfCytologyDcMcValue;
-	private String pfCellsCmmValue;
-	private String pfLymphocytesValue;
-	private String pfPolymorphValue;
 	private String pfMalignantCellsValue;
 	private String pfAdaValue;
 	private String pfProteinValue;
@@ -364,24 +361,6 @@ public class Investigation {
 	}
 	public void setPfCytologyDcMcValue(String pfCytologyDcMcValue) {
 		this.pfCytologyDcMcValue = pfCytologyDcMcValue;
-	}
-	public String getPfCellsCmmValue() {
-		return pfCellsCmmValue;
-	}
-	public void setPfCellsCmmValue(String pfCellsCmmValue) {
-		this.pfCellsCmmValue = pfCellsCmmValue;
-	}
-	public String getPfLymphocytesValue() {
-		return pfLymphocytesValue;
-	}
-	public void setPfLymphocytesValue(String pfLymphocytesValue) {
-		this.pfLymphocytesValue = pfLymphocytesValue;
-	}
-	public String getPfPolymorphValue() {
-		return pfPolymorphValue;
-	}
-	public void setPfPolymorphValue(String pfPolymorphValue) {
-		this.pfPolymorphValue = pfPolymorphValue;
 	}
 	public String getPfMalignantCellsValue() {
 		return pfMalignantCellsValue;
