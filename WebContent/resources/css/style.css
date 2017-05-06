@@ -160,3 +160,7 @@ body {
 .modal-dialog{
 	width: 80% !important;
 }
+
+.modal-body{
+	padding: 0px !important;
+}
