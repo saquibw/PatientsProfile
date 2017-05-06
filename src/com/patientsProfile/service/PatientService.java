@@ -41,6 +41,13 @@ public class PatientService {
 		}		
 	}
 	
+	public Integer update(Patient patient){
+		String sql = "Update patient Set name=?, age=?, sex=?, profession=?, contactNo=?, nid=?, area=?, thana=?, zilla=?, pastHistory=?, familyHistory=?, smokingHistory=?, drugHistory=? Where regNo=?";
+		
+		return jdbcTemplate.update(sql, new Object[]{patient.getName(), patient.getAge(), patient.getSex(), patient.getProfession(), patient.getContactNo(), patient.getNid(), 
+				patient.getArea(), patient.getThana(), patient.getZilla(), patient.getPastHistory(), patient.getFamilyHistory(), patient.getSmokingHistory(), patient.getDrugHistory(), patient.getRegNo()});
+	}
+	
 	public Patient getByRegNo(String regNo){
 		String sql = "Select * From patient where regNo = ?";
 		

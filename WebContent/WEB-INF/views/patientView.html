@@ -11,7 +11,7 @@
 			<table>
 				<tr>
 					<td><label>Registration No:</label> </td>
-					<td><label class="form-control" th:text="${patient.regNo}" ></label></td>
+					<td><input type="text" id="regNo" class="form-control" th:field="*{regNo}" readonly="readonly"/></td>
 					<td><label>Date:</label></td>
 					<td><label class="form-control" th:text="${patient.creationDate}"></label></td>
 					<td><label>Name:</label></td>
@@ -67,7 +67,8 @@
 				
 				<tr>
 					<td colspan="2"></td>
-					<td colspan="2"><input type="submit" id="updatePatientButton" class="btn btn-success btn-lg full-width hide" value="Update Patient"/></td>
+					<td><button type="button" id="updatePatientButton" class="btn btn-success btn-lg full-width">Update Patient</button></td>
+					<td><button type="button" id="viewVisitButton" class="btn btn-primary btn-lg full-width">View Visits</button></td>
 					<td colspan="2"></td>
 				</tr>
 			</table>
@@ -89,7 +90,6 @@
 				<th><label>Name</label></th>
 				<th><label>Age</label></th>
 				<th><label>Sex</label></th>
-				<th><label>Profession</label></th>
 				<th><label>Contact No</label></th>
 				<th><label>NID</label></th>
 				<th><label>Area</label></th>
@@ -108,6 +108,50 @@
 		</div>		
 	</div>
 	
+	<div class="modal fade" id="visitModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+				
+					<div id="visitViewer">
+					<label>PATIENT VISITS:</label>
+					<div id="patientVisitTableHolder">
+						<table class="table-bordered table-hover" id="patientVisitTable">
+							<thead>
+							<tr>
+								<th><label>Visit Date</label></th>
+								<th><label>Registration No</label></th>
+								<th><label>Name</label></th>
+								<th><label>Contact No</label></th>
+								<th><label>Zilla</label></th>
+								<th><label>Chief Complains</label></th>
+								<th><label>Final Diagnosis</label></th>
+								<th></th>
+								<th></th>
+							</tr>
+							<tr id="noPatientVisitNotification">
+								<td colspan="9" style="text-align:center;white-space:nowrap">No visits available</td>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+			
+						</table>
+						</div>		
+					</div>
+					
+				</div>
+				
+				<!-- <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	
 	<script>
 	$("document").ready(function() {
 		PatientManager.getPatientList("");
@@ -119,6 +163,34 @@
 				var param = $("#searchBox").val();
 				PatientManager.getPatientList(param);
 			},1000);			
+		});
+		
+		$("#updatePatientButton").click(function(){
+			if($("#regNo").val() != ""){
+				$("#registrationForm").submit();
+			}else{
+				alert("Please select a patient");
+			}
+		});
+		
+		$("#viewVisitButton").click(function(){
+			if($("#regNo").val() != ""){
+				$("#visitModal").modal({
+					backdrop: true
+				});
+				
+				$("#visitModal").on('shown.bs.modal', function() {
+					PatientManager.getPatientVisitList($("#regNo").val());
+					$("#visitModal").find('.modal-body').css({
+			              height:'500px', //probably not needed 
+			              'max-height':'100%'
+			       });
+					
+				});
+			}else{
+				alert("Please select a patient");
+			}
+			
 		});
 	});
 	</script>

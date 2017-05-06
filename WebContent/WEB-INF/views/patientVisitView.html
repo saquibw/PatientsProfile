@@ -265,11 +265,25 @@
 						<td><label>B. Urea -</label></td>
 						<td><input type="text" th:field="*{bUreaValue}" class="form-control half-width"/>mg/dl</td>
 						
-						<td style="padding-left: 10px;"><label>Uric Acid -</label></td>
+						<td style="padding-left: 15px;"><label>Uric Acid -</label></td>
 						<td><input type="text" th:field="*{uricAcidValue}" class="form-control half-width"/>mg/dl</td>
 						
-						<td><label>D.C. -</label></td>
-						<td><input type="text" th:field="*{dcValue}" class="form-control half-width"/></td>
+						<td><label>D.C. - P</label></td>
+						<td><input type="text" th:field="*{dcPValue}" class="form-control half-width"/>%</td>
+					</tr>
+					
+					<tr>
+						<td><label>D.C. - L</label></td>
+						<td><input type="text" th:field="*{dcLValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - M</label></td>
+						<td><input type="text" th:field="*{dcMValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - E</label></td>
+						<td><input type="text" th:field="*{dcEValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - B</label></td>
+						<td><input type="text" th:field="*{dcBValue}" class="form-control half-width"/>%</td>
 					</tr>
 					
 					<tr>
@@ -372,12 +386,24 @@
 					</tr>
 					
 					<tr>
-						<td><label>Plural Fluid Exam:<br></br> Cytology -</label></td>
-						<td><input type="text" th:field="*{pfCytologyValue}" class="form-control half-width"/></td>
+						<td colspan="8"><label>Plural Fluid Exam:</label></td>
+					</tr>
+					
+					<tr>
+						<td><label>Cytology - Total count</label></td>
+						<td><input type="text" th:field="*{pfCytologyTcValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>Diff. count<br></br>Polymorph</label></td>
+						<td><input type="text" th:field="*{pfCytologyDcPValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>Diff. count<br></br>Mononuclear cell</label></td>
+						<td><input type="text" th:field="*{pfCytologyDcMcValue}" class="form-control half-width"/>%</td>
 						
 						<td><label>Cells/C.mm -</label></td>
 						<td><input type="text" th:field="*{pfCellsCmmValue}" class="form-control half-width"/></td>
-						
+					</tr>
+					
+					<tr>
 						<td><label>Lymphocytes -</label></td>
 						<td><input type="text" th:field="*{pfLymphocytesValue}" class="form-control half-width"/>%</td>
 						
@@ -387,8 +413,11 @@
 					
 					<tr>
 						<td><label>Mallignant Cells -</label></td>
-						<td><input type="text" th:field="*{pfMalignantCellsValue}" class="form-control half-width"/></td>
-						
+						<td colspan="7"><label class="radio-inline"><input type="radio" th:name="pfMalignantCellsValue" value="0" checked="checked"/>-</label>
+						<label class="radio-inline" style="width: 100%;"><input type="radio" th:name="pfMalignantCellsValue" value="" class="radio-top-margin"/><input type="text" class="pfMalignantCellsValue form-control float-right"/></label></td>
+					</tr>
+					
+					<tr>						
 						<td><label>ADA -</label></td>
 						<td><input type="text" th:field="*{pfAdaValue}" class="form-control half-width"/></td>
 						
@@ -397,6 +426,9 @@
 						
 						<td><label>Sugar -</label></td>
 						<td><input type="text" th:field="*{pfSugarValue}" class="form-control half-width"/>mmol/L</td>
+						
+						<td></td>
+						<td></td>
 					</tr>
 					
 					<tr>

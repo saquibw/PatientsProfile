@@ -16,7 +16,11 @@ public class Investigation {
 	private String creatininValue;
 	private String bUreaValue;
 	private String uricAcidValue;
-	private String dcValue;
+	private String dcPValue;
+	private String dcLValue;
+	private String dcMValue;
+	private String dcEValue;
+	private String dcBValue;
 	private String bilirubinValue;
 	private String sgptValue;
 	private String sgotValue;
@@ -43,7 +47,9 @@ public class Investigation {
 	private String spuAfb2Value;
 	private String spuAfb3Value;
 	private String spuEosinophilsValue;
-	private String pfCytologyValue;
+	private String pfCytologyTcValue;
+	private String pfCytologyDcPValue;
+	private String pfCytologyDcMcValue;
 	private String pfCellsCmmValue;
 	private String pfLymphocytesValue;
 	private String pfPolymorphValue;
@@ -155,11 +161,35 @@ public class Investigation {
 	public void setUricAcidValue(String uricAcidValue) {
 		this.uricAcidValue = uricAcidValue;
 	}
-	public String getDcValue() {
-		return dcValue;
+	public String getDcPValue() {
+		return dcPValue;
 	}
-	public void setDcValue(String dcValue) {
-		this.dcValue = dcValue;
+	public void setDcPValue(String dcPValue) {
+		this.dcPValue = dcPValue;
+	}
+	public String getDcLValue() {
+		return dcLValue;
+	}
+	public void setDcLValue(String dcLValue) {
+		this.dcLValue = dcLValue;
+	}
+	public String getDcMValue() {
+		return dcMValue;
+	}
+	public void setDcMValue(String dcMValue) {
+		this.dcMValue = dcMValue;
+	}
+	public String getDcEValue() {
+		return dcEValue;
+	}
+	public void setDcEValue(String dcEValue) {
+		this.dcEValue = dcEValue;
+	}
+	public String getDcBValue() {
+		return dcBValue;
+	}
+	public void setDcBValue(String dcBValue) {
+		this.dcBValue = dcBValue;
 	}
 	public String getBilirubinValue() {
 		return bilirubinValue;
@@ -317,11 +347,23 @@ public class Investigation {
 	public void setSpuEosinophilsValue(String spuEosinophilsValue) {
 		this.spuEosinophilsValue = spuEosinophilsValue;
 	}
-	public String getPfCytologyValue() {
-		return pfCytologyValue;
+	public String getPfCytologyTcValue() {
+		return pfCytologyTcValue;
 	}
-	public void setPfCytologyValue(String pfCytologyValue) {
-		this.pfCytologyValue = pfCytologyValue;
+	public void setPfCytologyTcValue(String pfCytologyTcValue) {
+		this.pfCytologyTcValue = pfCytologyTcValue;
+	}
+	public String getPfCytologyDcPValue() {
+		return pfCytologyDcPValue;
+	}
+	public void setPfCytologyDcPValue(String pfCytologyDcPValue) {
+		this.pfCytologyDcPValue = pfCytologyDcPValue;
+	}
+	public String getPfCytologyDcMcValue() {
+		return pfCytologyDcMcValue;
+	}
+	public void setPfCytologyDcMcValue(String pfCytologyDcMcValue) {
+		this.pfCytologyDcMcValue = pfCytologyDcMcValue;
 	}
 	public String getPfCellsCmmValue() {
 		return pfCellsCmmValue;

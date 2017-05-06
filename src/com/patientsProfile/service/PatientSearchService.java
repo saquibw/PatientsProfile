@@ -40,12 +40,12 @@ public class PatientSearchService {
 				   + "from patients_profile.patient_visit pv "
 				   + "LEFT OUTER JOIN patients_profile.patient p ON p.regNo = pv.regNo "
 				   + "LEFT OUTER JOIN patients_profile.investigation i ON i.visitId = pv.id "
-				   + "Where p.name like '%"+ param + "%' "
+				   + "Where pv.regNo like '%"+ param + "%' "
+				   + "OR p.name like '%"+ param + "%' "
 				   + "OR p.contactNo like '%"+ param + "%' "
 				   + "OR p.zilla like '%"+ param + "%' "
 				   + "OR i.finalDiagnosis like '%"+ param + "%' "
 				   + "order by str_to_date(pv.visitDate, '%d/%m/%Y') desc";
-		
 		return (List<PatientSearch>) jdbcTemplate.query(sql, getMapper());
 	}
 	

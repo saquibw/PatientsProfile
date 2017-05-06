@@ -51,4 +51,12 @@ public class HomeController {
 		
 		return "redirect:/viewpatient";
 	}
+	
+	@RequestMapping(value="/updatepatient", produces="application/json", method=RequestMethod.POST)
+	public String updatePatient(Patient patient){
+		if(patient != null){
+			patientService.update(patient);
+		}
+		return "redirect:/viewpatient";
+	}
 }

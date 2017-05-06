@@ -127,7 +127,8 @@ body {
 	float:left;
 	width:100%;
 	overflow-y: auto;
-	height: 400px;
+	max-height: 400px;
+	margin-bottom: 10px;
 }
 
 #patientViewer{
@@ -147,10 +148,15 @@ body {
 	float:left;
 	width:100%;
 	overflow-y: auto;
-	height: 400px;
+	max-height: 400px;
+	margin-bottom: 10px;
 }
 
 .followUpSection{
 	margin: 40px auto;
 	width: 600px;
+}
+
+.modal-dialog{
+	width: 80% !important;
 }

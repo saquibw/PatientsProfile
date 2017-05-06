@@ -151,6 +151,14 @@ var InvestigationListener = (function(){
 		$(".uRbcValue").focus(function(){
 			PatientManager.selectRadioButton(this.className.split(" ")[0]);
 		});
+		
+		$(".pfMalignantCellsValue").keyup(function(){
+			PatientManager.updateRadioButtonValue(this.className.split(" ")[0], $(this).val());
+		});
+		
+		$(".pfMalignantCellsValue").focus(function(){
+			PatientManager.selectRadioButton(this.className.split(" ")[0]);
+		});
 	}
 	
 	return{

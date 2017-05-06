@@ -67,16 +67,30 @@
 					
 					<tr>
 						<td><label>S. Creatinin -</label></td>
-						<td><input type="text" th:name="creatininValue" class="form-control half-width"/>mmol/L</td>
+						<td><input type="text" th:name="creatininValue" class="form-control half-width"/>mg/dl</td>
 						
 						<td><label>B. Urea -</label></td>
 						<td><input type="text" th:name="bUreaValue" class="form-control half-width"/>mg/dl</td>
 						
-						<td style="padding-left: 10px;"><label>Uric Acid -</label></td>
+						<td style="padding-left: 15px;"><label>Uric Acid -</label></td>
 						<td><input type="text" th:name="uricAcidValue" class="form-control half-width"/>mg/dl</td>
 						
-						<td><label>D.C. -</label></td>
-						<td><input type="text" th:name="dcValue" class="form-control half-width"/></td>
+						<td><label>D.C. - P</label></td>
+						<td><input type="text" th:name="dcPValue" class="form-control half-width"/>%</td>
+					</tr>
+						
+					<tr>
+						<td><label>D.C. - L</label></td>
+						<td><input type="text" th:name="dcLValue" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - M</label></td>
+						<td><input type="text" th:name="dcMValue" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - E</label></td>
+						<td><input type="text" th:name="dcEValue" class="form-control half-width"/>%</td>
+						
+						<td><label>D.C. - B</label></td>
+						<td><input type="text" th:name="dcBValue" class="form-control half-width"/>%</td>
 					</tr>
 					
 					<tr>
@@ -84,7 +98,7 @@
 						<td><input type="text" th:name="bilirubinValue" class="form-control half-width"/>mg/dl</td>
 						
 						<td><label>SGPT(ALT) -</label></td>
-						<td><input type="text" th:name="sgptValue" class="form-control half-width"/></td>
+						<td><input type="text" th:name="sgptValue" class="form-control half-width"/>U/L</td>
 						
 						<td><label>SGOT -</label></td>
 						<td><input type="text" th:name="sgotValue" class="form-control half-width"/>U/L</td>
@@ -179,12 +193,24 @@
 					</tr>
 					
 					<tr>
-						<td><label>Plural Fluid Exam:<br></br> Cytology -</label></td>
-						<td><input type="text" th:name="pfCytologyValue" class="form-control half-width"/></td>
+						<td colspan="8"><label>Plural Fluid Exam:</label></td>
+					</tr>
+					
+					<tr>
+						<td><label> Cytology - Total count</label></td>
+						<td><input type="text" th:name="pfCytologyTcValue" class="form-control half-width"/>%</td>
+						
+						<td><label>Diff. count<br></br>Polymorph</label></td>
+						<td><input type="text" th:name="pfCytologyDcPValue" class="form-control half-width"/>%</td>
+						
+						<td><label>Diff. count<br></br>Mononuclear cell</label></td>
+						<td><input type="text" th:name="pfCytologyDcMcValue" class="form-control half-width"/>%</td>
 						
 						<td><label>Cells/C.mm -</label></td>
 						<td><input type="text" th:name="pfCellsCmmValue" class="form-control half-width"/></td>
-						
+					</tr>
+					
+					<tr>
 						<td><label>Lymphocytes -</label></td>
 						<td><input type="text" th:name="pfLymphocytesValue" class="form-control half-width"/>%</td>
 						
@@ -194,8 +220,11 @@
 					
 					<tr>
 						<td><label>Mallignant Cells -</label></td>
-						<td><input type="text" th:name="pfMalignantCellsValue" class="form-control half-width"/></td>
-						
+						<td colspan="7"><label class="radio-inline"><input type="radio" th:name="pfMalignantCellsValue" value="0" checked="checked"/>-</label>
+						<label class="radio-inline" style="width: 100%;"><input type="radio" th:name="pfMalignantCellsValue" value="" class="radio-top-margin"/><input type="text" class="pfMalignantCellsValue form-control float-right"/></label></td>
+					</tr>
+					
+					<tr>						
 						<td><label>ADA -</label></td>
 						<td><input type="text" th:name="pfAdaValue" class="form-control half-width"/></td>
 						
@@ -204,6 +233,9 @@
 						
 						<td><label>Sugar -</label></td>
 						<td><input type="text" th:name="pfSugarValue" class="form-control half-width"/>mmol/L</td>
+						
+						<td></td>
+						<td></td>
 					</tr>
 					
 					<tr>

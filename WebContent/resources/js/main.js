@@ -47,11 +47,11 @@ var PatientManager = (function(){
 		request.done(function(response){
 			if(response.success){
 				$("#patientVisitTable tbody").empty();
-				$("#noPatientNotification").removeClass("hide");
+				$("#noPatientVisitNotification").removeClass("hide");
 				var patientList = JSON.parse(response.patientList);
 				if(patientList){
 					if(patientList.length > 0){
-						$("#noPatientNotification").addClass("hide");
+						$("#noPatientVisitNotification").addClass("hide");
 						$.each(patientList, function(key, patient){
 							var colStart = "<td>";
 							var colEnd = "</td>";
@@ -101,7 +101,6 @@ var PatientManager = (function(){
 							html += colStart + patient.name + colEnd;
 							html += colStart + patient.age + colEnd;
 							html += colStart + patient.sex + colEnd;
-							html += colStart + patient.profession + colEnd;
 							html += colStart + patient.contactNo + colEnd;
 							html += colStart + patient.nid + colEnd;
 							html += colStart + patient.area + colEnd;
