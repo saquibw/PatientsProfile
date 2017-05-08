@@ -28,9 +28,9 @@ private JdbcTemplate jdbcTemplate;
 		String sql = "Insert Into investigation (visitId, cxrValue, xrayValue, hbValue, esrValue, wbcValue, plateletsValue, bsRbsValue, bsFastingValue, habfValue, hba1cValue, "
 				+ "creatininValue, bUreaValue, uricAcidValue, dcPValue, dcLValue, dcMValue, dcEValue, dcBValue, bilirubinValue, sgptValue, sgotValue, alkPhosValue, cholesterolValue, hdlValue, ldlValue, tgValue, eNaValue, "
 				+ "eKValue, eClValue, eCo2Value, prothrombinValue, btValue, ctValue, raValue, albuminValue, uAlbValue, uSugarValue, uPcValue, uEcValue, uRbcValue, spuAfb1Value, "
-				+ "spuAfb2Value, spuAfb3Value, spuEosinophilsValue, pfCytologyTcValue, pfCytologyDcPValue, pfCytologyDcMcValue, pfMalignantCellsValue, pfAdaValue, pfProteinValue, "
+				+ "spuAfb2Value, spuAfb3Value, spuEosinophilsValue, tshValue, ft4Value, t3Value, t4Value, pfCytologyTcValue, pfCytologyDcPValue, pfCytologyDcMcValue, pfMalignantCellsValue, pfAdaValue, pfProteinValue, "
 				+ "pfSugarValue, pfAfbValue, usgValue, ecgValue, cardioValue, ctScanValue, htctChestValue, mriBrainValue, mriSpineValue, fnacValue, endoscopyValue, coloscopyValue, bronchoscopyValue, "
-				+ "finalDiagnosis, treatment) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "finalDiagnosis, treatment) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result = 0;
 		
@@ -42,7 +42,8 @@ private JdbcTemplate jdbcTemplate;
 					investigation.getSgotValue(), investigation.getAlkPhosValue(), investigation.getCholesterolValue(), investigation.getHdlValue(), investigation.getLdlValue(), investigation.getTgValue(), 
 					investigation.geteNaValue(), investigation.geteKValue(), investigation.geteClValue(), investigation.geteCo2Value(), investigation.getProthrombinValue(), investigation.getBtValue(), 
 					investigation.getCtValue(), investigation.getRaValue(), investigation.getAlbuminValue(), investigation.getuAlbValue(), investigation.getuSugarValue(), investigation.getuPcValue(), 
-					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(), 
+					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(),
+					investigation.getTshValue(), investigation.getFt4Value(), investigation.getT3Value(), investigation.getT4Value(),
 					investigation.getPfCytologyTcValue(), investigation.getPfCytologyDcPValue(), investigation.getPfCytologyDcMcValue(), investigation.getPfMalignantCellsValue(), 
 					investigation.getPfAdaValue(), investigation.getPfProteinValue(), investigation.getPfSugarValue(), investigation.getPfAfbValue(), investigation.getUsgValue(), investigation.getEcgValue(), 
 					investigation.getCardioValue(), investigation.getCtScanValue(), investigation.getHtctChestValue(), investigation.getMriBrainValue(), investigation.getMriSpineValue(), investigation.getFnacValue(), 
@@ -58,6 +59,7 @@ private JdbcTemplate jdbcTemplate;
 				+ "creatininValue = ?, bUreaValue = ?, uricAcidValue = ?, dcPValue = ?, dcLValue = ?, dcMValue = ?, dcEValue = ?, dcBValue = ?, bilirubinValue = ?, sgptValue = ?, sgotValue = ?, alkPhosValue = ?, "
 				+ "cholesterolValue = ?, hdlValue = ?, ldlValue = ?, tgValue = ?, eNaValue = ?, eKValue = ?, eClValue = ?, eCo2Value = ?, prothrombinValue = ?, btValue = ?, ctValue = ?, raValue = ?, "
 				+ "albuminValue = ?, uAlbValue = ?, uSugarValue = ?, uPcValue = ?, uEcValue = ?, uRbcValue = ?, spuAfb1Value = ?, spuAfb2Value = ?, spuAfb3Value = ?, spuEosinophilsValue = ?, "
+				+ "tshValue = ?, ft4Value = ?, t3Value = ?, t4Value = ?, "
 				+ "pfCytologyTcValue = ?, pfCytologyDcPValue = ?, pfCytologyDcMcValue = ?, pfMalignantCellsValue = ?, pfAdaValue = ?, pfProteinValue = ?, pfSugarValue = ?, pfAfbValue = ?, "
 				+ "usgValue = ?, ecgValue = ?, cardioValue = ?, ctScanValue = ?, htctChestValue = ?, mriBrainValue = ?, mriSpineValue = ?, fnacValue = ?, endoscopyValue = ?, coloscopyValue = ?, "
 				+ "bronchoscopyValue = ?, finalDiagnosis = ?, treatment = ? "
@@ -71,7 +73,8 @@ private JdbcTemplate jdbcTemplate;
 					investigation.getSgotValue(), investigation.getAlkPhosValue(), investigation.getCholesterolValue(), investigation.getHdlValue(), investigation.getLdlValue(), investigation.getTgValue(), 
 					investigation.geteNaValue(), investigation.geteKValue(), investigation.geteClValue(), investigation.geteCo2Value(), investigation.getProthrombinValue(), investigation.getBtValue(), 
 					investigation.getCtValue(), investigation.getRaValue(), investigation.getAlbuminValue(), investigation.getuAlbValue(), investigation.getuSugarValue(), investigation.getuPcValue(), 
-					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(), 
+					investigation.getuEcValue(), investigation.getuRbcValue(), investigation.getSpuAfb1Value(), investigation.getSpuAfb2Value(), investigation.getSpuAfb3Value(), investigation.getSpuEosinophilsValue(),
+					investigation.getTshValue(), investigation.getFt4Value(), investigation.getT3Value(), investigation.getT4Value(),
 					investigation.getPfCytologyTcValue(), investigation.getPfCytologyDcPValue(), investigation.getPfCytologyDcMcValue(), investigation.getPfMalignantCellsValue(), 
 					investigation.getPfAdaValue(), investigation.getPfProteinValue(), investigation.getPfSugarValue(), investigation.getPfAfbValue(), investigation.getUsgValue(), investigation.getEcgValue(), 
 					investigation.getCardioValue(), investigation.getCtScanValue(), investigation.getHtctChestValue(), investigation.getMriBrainValue(), investigation.getMriSpineValue(), investigation.getFnacValue(), 
@@ -143,6 +146,10 @@ private JdbcTemplate jdbcTemplate;
 				investigation.setSpuAfb2Value(rs.getString("spuAfb2Value")); 
 				investigation.setSpuAfb3Value(rs.getString("spuAfb3Value")); 
 				investigation.setSpuEosinophilsValue(rs.getString("spuEosinophilsValue")); 
+				investigation.setTshValue(rs.getString("tshValue"));
+				investigation.setFt4Value(rs.getString("ft4Value"));
+				investigation.setT3Value(rs.getString("t3Value"));
+				investigation.setT4Value(rs.getString("t4Value"));
 				investigation.setPfCytologyTcValue(rs.getString("pfCytologyTcValue"));
 				investigation.setPfCytologyDcPValue(rs.getString("pfCytologyDcPValue")); 
 				investigation.setPfCytologyDcMcValue(rs.getString("pfCytologyDcMcValue")); 

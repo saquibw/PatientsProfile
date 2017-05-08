@@ -47,6 +47,10 @@ public class Investigation {
 	private String spuAfb2Value;
 	private String spuAfb3Value;
 	private String spuEosinophilsValue;
+	private String tshValue;
+	private String ft4Value;
+	private String t3Value;
+	private String t4Value;
 	private String pfCytologyTcValue;
 	private String pfCytologyDcPValue;
 	private String pfCytologyDcMcValue;
@@ -470,4 +474,29 @@ public class Investigation {
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
 	}
+	public String getTshValue() {
+		return tshValue;
+	}
+	public void setTshValue(String tshValue) {
+		this.tshValue = tshValue;
+	}
+	public String getFt4Value() {
+		return ft4Value;
+	}
+	public void setFt4Value(String ft4Value) {
+		this.ft4Value = ft4Value;
+	}
+	public String getT3Value() {
+		return t3Value;
+	}
+	public void setT3Value(String t3Value) {
+		this.t3Value = t3Value;
+	}
+	public String getT4Value() {
+		return t4Value;
+	}
+	public void setT4Value(String t4Value) {
+		this.t4Value = t4Value;
+	}
+	
 }
