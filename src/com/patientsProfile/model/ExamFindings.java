@@ -20,7 +20,8 @@ public class ExamFindings {
 	private String liverValue;
 	private String spleenValue;
 	private String kidneyValue;
-	private String abdomenValue;
+	private String abdomenEpiValue;
+	private String abdomenDuoValue;
 	private String lowerAbdomenValue;
 	private String mcTendernessValue;
 	private String lymphNodeValue;
@@ -131,11 +132,17 @@ public class ExamFindings {
 	public void setKidneyValue(String kidneyValue) {
 		this.kidneyValue = kidneyValue;
 	}
-	public String getAbdomenValue() {
-		return abdomenValue;
+	public String getAbdomenEpiValue() {
+		return abdomenEpiValue;
 	}
-	public void setAbdomenValue(String abdomenValue) {
-		this.abdomenValue = abdomenValue;
+	public void setAbdomenEpiValue(String abdomenEpiValue) {
+		this.abdomenEpiValue = abdomenEpiValue;
+	}
+	public String getAbdomenDuoValue() {
+		return abdomenDuoValue;
+	}
+	public void setAbdomenDuoValue(String abdomenDuoValue) {
+		this.abdomenDuoValue = abdomenDuoValue;
 	}
 	public String getLowerAbdomenValue() {
 		return lowerAbdomenValue;

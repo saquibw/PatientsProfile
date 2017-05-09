@@ -53,9 +53,17 @@ public class PatientVisitViewController {
 		
 		PatientVisit visit = patientVisitService.getById(Integer.parseInt(visitId));		
 		Patient patient = patientService.getByRegNo(visit.getRegNo());
-		ExamFindings findings = examFindingsService.getByVisitId(Integer.parseInt(visitId));
-		Investigation investigation = investigationService.getByVisitId(Integer.parseInt(visitId));
 		
+		ExamFindings findings = new ExamFindings();
+		if(examFindingsService.ifExists(Integer.parseInt(visitId))){
+			findings = examFindingsService.getByVisitId(Integer.parseInt(visitId));
+		}
+		
+		Investigation investigation = new Investigation();
+		if(investigationService.ifExists(Integer.parseInt(visitId))){
+			investigation = investigationService.getByVisitId(Integer.parseInt(visitId));
+		}
+				
 		model.addAttribute("patientVisit", visit);
 		model.addAttribute("patient", patient);
 		model.addAttribute("examFindings", findings);
@@ -88,22 +96,44 @@ public class PatientVisitViewController {
 	
 	@RequestMapping(value="/updateexamfindings", produces="application/json", method=RequestMethod.POST)
 	public String updateExamFindings(ExamFindings findings,
-			RedirectAttributes redirectAttrs){
-		
-		examFindingsService.update(findings);
+			RedirectAttributes redirectAttrs, HttpServletRequest request){
+		HttpSession session = request.getSession();
 		
 		Integer visitId = findings.getVisitId();
+		System.out.println(visitId);
+		if (visitId == null) {
+			visitId = Integer.parseInt((String) session.getAttribute("viewerVisitId"));
+		}
+		System.out.println(visitId);
+		System.out.println(examFindingsService.ifExists(visitId));
+		if(examFindingsService.ifExists(visitId)){
+			examFindingsService.update(findings);
+		}else{
+			findings.setVisitId(visitId);
+			examFindingsService.create(findings);
+		}
+						
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 		return "redirect:/viewpatientvisit";
 	}
 	
 	@RequestMapping(value="/updateinvestigation", produces="application/json", method=RequestMethod.POST)
 	public String updateInvestigation(Investigation investigation,
-			RedirectAttributes redirectAttrs){
-		
-		investigationService.update(investigation);
+			RedirectAttributes redirectAttrs, HttpServletRequest request){
+		HttpSession session = request.getSession();
 		
 		Integer visitId = investigation.getVisitId();
+		if (visitId == null) {
+			visitId = Integer.parseInt((String) session.getAttribute("viewerVisitId"));
+		}
+
+		if(investigationService.ifExists(visitId)){
+			investigationService.update(investigation);
+		}else{
+			investigation.setVisitId(visitId);
+			investigationService.create(investigation);
+		}
+		
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 		return "redirect:/viewpatientvisit";
 	}

@@ -117,7 +117,10 @@
 				</div>
 				<div class="modal-body">
 								
-					<div id="visitViewer">					
+					<div id="visitViewer">
+					<div class="newVisitSection">
+						<a class="btn btn-primary btn-block">New Visit</a>
+					</div>					
 					<div id="patientVisitTableHolder">
 						<table class="table-bordered table-hover" id="patientVisitTable">
 							<thead>
@@ -186,6 +189,8 @@
 			              'max-height':'100%'
 			       });
 					
+					var url = "patientvisit?regNo=" + $("#regNo").val();
+					$(".newVisitSection a").attr("href", url)
 				});
 			}else{
 				alert("Please select a patient");

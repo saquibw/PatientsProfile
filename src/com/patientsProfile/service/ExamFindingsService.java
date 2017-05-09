@@ -27,8 +27,8 @@ private JdbcTemplate jdbcTemplate;
 	public Integer create(ExamFindings examFindings){
 		String sql = "Insert Into exam_findings (visitId, anaemiaValue, neckVainsValue, jaundiceValue, clubingValue, cyanosisValue, koilonychiaValue, "
 				+ "oedemaValue, gynaecomastiaValue, ascitisValue, palmarErythemaValue, temperatureValue, flappingTremorValue, pulseValue, bpValue, liverValue, "
-				+ "spleenValue, kidneyValue, abdomenValue, lowerAbdomenValue, mcTendernessValue, lymphNodeValue, lungsValue, heartValue, nervousSystemValue, provisionalDiagnosis )"
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "spleenValue, kidneyValue, abdomenEpiValue, abdomenDuoValue, lowerAbdomenValue, mcTendernessValue, lymphNodeValue, lungsValue, heartValue, nervousSystemValue, provisionalDiagnosis )"
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result= 0;
 		try {
@@ -37,7 +37,7 @@ private JdbcTemplate jdbcTemplate;
 					examFindings.getClubingValue(), examFindings.getCyanosisValue(), examFindings.getKoilonychiaValue(), examFindings.getOedemaValue(), examFindings.getGynaecomastiaValue(), 
 					examFindings.getAscitisValue(), examFindings.getPalmarErythemaValue(), examFindings.getTemperatureValue(), examFindings.getFlappingTremorValue(), 
 					examFindings.getPulseValue(), examFindings.getBpValue(), examFindings.getLiverValue(), examFindings.getSpleenValue(), 
-					examFindings.getKidneyValue(), examFindings.getAbdomenValue(), examFindings.getLowerAbdomenValue(), examFindings.getMcTendernessValue(), examFindings.getLymphNodeValue(),
+					examFindings.getKidneyValue(), examFindings.getAbdomenEpiValue(), examFindings.getAbdomenDuoValue(), examFindings.getLowerAbdomenValue(), examFindings.getMcTendernessValue(), examFindings.getLymphNodeValue(),
 					examFindings.getLungsValue(), examFindings.getHeartValue(), examFindings.getNervousSystemValue(), examFindings.getProvisionalDiagnosis()});
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ private JdbcTemplate jdbcTemplate;
 	public void update(ExamFindings examFindings){
 		String sql = "Update exam_findings set anaemiaValue = ?, neckVainsValue = ?, jaundiceValue = ?, clubingValue = ?, cyanosisValue = ?, koilonychiaValue = ?, "
 				+ "oedemaValue = ?, gynaecomastiaValue = ?, ascitisValue = ?, palmarErythemaValue = ?, temperatureValue = ?, flappingTremorValue = ?, pulseValue = ?, bpValue = ?, liverValue = ?, "
-				+ "spleenValue = ?, kidneyValue = ?, abdomenValue = ?, lowerAbdomenValue = ?, mcTendernessValue = ?, lymphNodeValue = ?, lungsValue = ?, heartValue = ?, "
+				+ "spleenValue = ?, kidneyValue = ?, abdomenEpiValue = ?, abdomenDuoValue = ?, lowerAbdomenValue = ?, mcTendernessValue = ?, lymphNodeValue = ?, lungsValue = ?, heartValue = ?, "
 				+ "nervousSystemValue = ?, provisionalDiagnosis = ? where visitId = ?";
 		
 		jdbcTemplate.update(sql, new Object[]{
@@ -57,7 +57,7 @@ private JdbcTemplate jdbcTemplate;
 				examFindings.getClubingValue(), examFindings.getCyanosisValue(), examFindings.getKoilonychiaValue(), examFindings.getOedemaValue(), examFindings.getGynaecomastiaValue(), 
 				examFindings.getAscitisValue(), examFindings.getPalmarErythemaValue(), examFindings.getTemperatureValue(), examFindings.getFlappingTremorValue(), 
 				examFindings.getPulseValue(), examFindings.getBpValue(), examFindings.getLiverValue(), examFindings.getSpleenValue(), 
-				examFindings.getKidneyValue(), examFindings.getAbdomenValue(), examFindings.getLowerAbdomenValue(), examFindings.getMcTendernessValue(), examFindings.getLymphNodeValue(),
+				examFindings.getKidneyValue(), examFindings.getAbdomenEpiValue(), examFindings.getAbdomenDuoValue(), examFindings.getLowerAbdomenValue(), examFindings.getMcTendernessValue(), examFindings.getLymphNodeValue(),
 				examFindings.getLungsValue(), examFindings.getHeartValue(), examFindings.getNervousSystemValue(), examFindings.getProvisionalDiagnosis(), examFindings.getVisitId()});
 	}
 	
@@ -70,6 +70,19 @@ private JdbcTemplate jdbcTemplate;
 			e.printStackTrace();
 		}
 		return findings;
+	}
+	
+	public Boolean ifExists(Integer visitId){
+		String sql = "Select Count(*) From exam_findings where visitId = ?";
+		Integer count = null;
+		Boolean result = false;
+		try {
+			count = jdbcTemplate.queryForObject(sql, new Object[]{visitId}, Integer.class);
+			result = count > 0 ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	private RowMapper<ExamFindings> getMapper(){
@@ -96,7 +109,8 @@ private JdbcTemplate jdbcTemplate;
 				findings.setLiverValue(rs.getString("liverValue"));
 				findings.setSpleenValue(rs.getString("spleenValue"));
 				findings.setKidneyValue(rs.getString("kidneyValue"));
-				findings.setAbdomenValue(rs.getString("abdomenValue"));
+				findings.setAbdomenEpiValue(rs.getString("abdomenEpiValue"));
+				findings.setAbdomenDuoValue(rs.getString("abdomenDuoValue"));
 				findings.setLowerAbdomenValue(rs.getString("lowerAbdomenValue"));
 				findings.setMcTendernessValue(rs.getString("mcTendernessValue"));
 				findings.setLymphNodeValue(rs.getString("lymphNodeValue"));

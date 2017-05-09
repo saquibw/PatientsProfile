@@ -95,6 +95,19 @@ private JdbcTemplate jdbcTemplate;
 		return inv;
 	}
 	
+	public Boolean ifExists(Integer visitId){
+		String sql = "Select Count(*) From investigation where visitId = ?";
+		Integer count = null;
+		Boolean result = false;
+		try {
+			count = jdbcTemplate.queryForObject(sql, new Object[]{visitId}, Integer.class);
+			result = count > 0 ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	private RowMapper<Investigation> getMapper(){
 		RowMapper<Investigation> mapper = new RowMapper<Investigation>() {
 			

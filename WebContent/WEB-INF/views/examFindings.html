@@ -118,10 +118,21 @@
 					<td><label>Kidney - <input type="text" th:field="*{kidneyValue}" class="half-width form-control"/></label>
 					</td>
 					
-					<td><label>Abdominal Tenderness -</label>
-						<label class="radio-inline"><input type="radio" name="abdomenValue" value="1"/>Epi(++)</label>
-						<label class="radio-inline"><input type="radio" name="abdomenValue" value="0" checked="checked"/>Duo(++)</label>
+					<td><label>Abdominal Tenderness (Epi) - </label>						
+						<label class="radio-inline"><input type="radio" name="abdomenEpiValue" value="0" checked="checked"/>None</label>
+						<label class="radio-inline"><input type="radio" name="abdomenEpiValue" value="1"/>+</label>
+						<label class="radio-inline"><input type="radio" name="abdomenEpiValue" value="2"/>++</label>
 					</td>
+				</tr>
+				
+				<tr>
+					<td><label>Abdominal Tenderness (Duo) - </label>						
+						<label class="radio-inline"><input type="radio" name="abdomenDuoValue" value="0" checked="checked"/>None</label>
+						<label class="radio-inline"><input type="radio" name="abdomenDuoValue" value="1"/>+</label>
+						<label class="radio-inline"><input type="radio" name="abdomenDuoValue" value="2"/>++</label>
+					</td>
+					
+					<td colspan="2"></td>
 				</tr>
 				
 				<tr>
