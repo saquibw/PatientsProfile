@@ -100,12 +100,10 @@ public class PatientVisitViewController {
 		HttpSession session = request.getSession();
 		
 		Integer visitId = findings.getVisitId();
-		System.out.println(visitId);
 		if (visitId == null) {
 			visitId = Integer.parseInt((String) session.getAttribute("viewerVisitId"));
 		}
-		System.out.println(visitId);
-		System.out.println(examFindingsService.ifExists(visitId));
+
 		if(examFindingsService.ifExists(visitId)){
 			examFindingsService.update(findings);
 		}else{
