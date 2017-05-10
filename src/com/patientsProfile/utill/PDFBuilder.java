@@ -32,8 +32,8 @@ public class PDFBuilder extends AbstractITextPdfView{
 		PatientVisit visit = (PatientVisit) patientList.get("patientVisit");
 		
 		doc.add(getDoctorInformation());
-		doc.add(getPatientInformation(patient));
-		doc.add(getPatientVisit(visit));
+		doc.add(getVisitDate(visit));
+		doc.add(getPatientInformation(patient, visit));
         //doc.add(new Paragraph("Recommended books for Spring framework"));
          
         /*PdfPTable table = new PdfPTable(5);
@@ -97,26 +97,7 @@ public class PDFBuilder extends AbstractITextPdfView{
 		return doctorInfo;
 	}
 	
-	private Paragraph getPatientInformation(Patient patient){
-		Paragraph patientInfo = new Paragraph();
-		
-		addEmptyLine(patientInfo, 1);
-		patientInfo.add(new Phrase("Registration No: " + patient.getRegNo(), mediamFont));
-		addEmptyLine(patientInfo, 1);
-		patientInfo.add(new Phrase("Patient Name: " + patient.getName(), mediamFont));
-		addEmptyLine(patientInfo, 1);
-		patientInfo.add(new Phrase("Phone No: " + patient.getContactNo(), mediamFont));
-		addEmptyLine(patientInfo, 1);
-		patientInfo.add(new Phrase("Address: Area-" + patient.getArea(), mediamFont));
-		patientInfo.add(new Phrase(", Thana-" + patient.getThana(), mediamFont));
-		patientInfo.add(new Phrase(", Zilla-" + patient.getZilla(), mediamFont));
-		
-		return patientInfo;
-	}
-	
-	private Paragraph getPatientVisit(PatientVisit visit){
-		Paragraph visitInfo = new Paragraph();
-		
+	private Paragraph getVisitDate(PatientVisit visit){
 		String visitDate = visit.getVisitDate();
 		try {
 			visitDate = new SimpleDateFormat("dd-MMM-yyyy").format(new SimpleDateFormat("dd/MM/yyyy").parse(visit.getVisitDate()));
@@ -124,12 +105,30 @@ public class PDFBuilder extends AbstractITextPdfView{
 			e.printStackTrace();
 		}
 		
-		addEmptyLine(visitInfo, 2);
-		visitInfo.add(new Phrase("Visit Date: " + visitDate, mediamFont));
-		addEmptyLine(visitInfo, 1);
-		visitInfo.add(new Phrase("Chief Complains: " + visit.getChiefComplains(), mediamFont));
+		Paragraph visitDateParagraph = new Paragraph();
+		addEmptyLine(visitDateParagraph, 1);
+		visitDateParagraph.add(new Phrase("Visit Date: " + visitDate, mediamFont));
+		visitDateParagraph.setAlignment(Element.ALIGN_RIGHT);
 		
-		return visitInfo;
+		return visitDateParagraph;
+	}
+	
+	private Paragraph getPatientInformation(Patient patient, PatientVisit visit){
+		Paragraph patientInfo = new Paragraph();
+		
+		patientInfo.add(new Phrase("Registration No: " + patient.getRegNo(), mediamFont));
+		addEmptyLine(patientInfo, 1);
+		patientInfo.add(new Phrase("Patient Name: " + patient.getName(), mediamFont));
+		addEmptyLine(patientInfo, 1);
+		patientInfo.add(new Phrase("Phone No: " + patient.getContactNo(), mediamFont));
+		addEmptyLine(patientInfo, 1);
+		patientInfo.add(new Phrase("Address: Area - " + patient.getArea(), mediamFont));
+		patientInfo.add(new Phrase(", Thana - " + patient.getThana(), mediamFont));
+		patientInfo.add(new Phrase(", Zilla - " + patient.getZilla(), mediamFont));
+		addEmptyLine(patientInfo, 1);
+		patientInfo.add(new Phrase("Chief Complains: " + visit.getChiefComplains(), mediamFont));
+		
+		return patientInfo;
 	}
 	
 	private static void addEmptyLine(Paragraph paragraph, int number) {
