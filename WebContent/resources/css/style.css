@@ -158,6 +158,16 @@ body {
 	width: 600px;
 }
 
+#followupButton{
+	float: left;
+	width: 250px;
+}
+
+#viewReportButton{
+	margin-left: 280px;
+	width: 250px;
+}
+
 .modal-dialog{
 	width: 80% !important;
 }

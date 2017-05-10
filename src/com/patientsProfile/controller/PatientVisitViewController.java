@@ -1,5 +1,10 @@
 package com.patientsProfile.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.patientsProfile.model.ExamFindings;
@@ -135,4 +141,31 @@ public class PatientVisitViewController {
 		redirectAttrs.addFlashAttribute("visitId", visitId);
 		return "redirect:/viewpatientvisit";
 	}
+	
+	@RequestMapping(value = "/viewReport", method = RequestMethod.GET)
+    public ModelAndView downloadExcel(@ModelAttribute("visitId") String visitId) {
+
+		PatientVisit visit = patientVisitService.getById(Integer.parseInt(visitId));		
+		Patient patient = patientService.getByRegNo(visit.getRegNo());
+		
+		ExamFindings findings = new ExamFindings();
+		if(examFindingsService.ifExists(Integer.parseInt(visitId))){
+			findings = examFindingsService.getByVisitId(Integer.parseInt(visitId));
+		}
+		
+		Investigation investigation = new Investigation();
+		if(investigationService.ifExists(Integer.parseInt(visitId))){
+			investigation = investigationService.getByVisitId(Integer.parseInt(visitId));
+		}
+		
+		Map<String, Object> patientList = new HashMap<>();
+		
+		patientList.put("patient", patient);
+		patientList.put("patientVisit", visit);
+		patientList.put("examFindings", findings);
+		patientList.put("investigation", investigation);
+ 
+        // return a view which will be resolved by an excel view resolver
+        return new ModelAndView("pdfView", "patientList", patientList);
+    }
 }

@@ -5,11 +5,11 @@
 </head>
 <body>
 	<div th:replace="main :: menu"></div>
-	
+
 	<div class="followUpSection">
-			<a class="btn btn-primary btn-block">FollowUp</a>
+			<a id="followupButton" class="btn btn-primary btn-block">FollowUp</a>
+			<a id="viewReportButton" class="btn btn-primary btn-block" target="_blank">View Report</a>
 	</div>
-	
 	<div id="patientVisitPage" class="form-group">
 		<form id="patientVisitForm" th:action="@{/updatepatientvisit}" th:object="${patientVisit}" method="post" accept-charset="utf-8">
 			<textarea th:name="id" th:text="${patientVisit.id}" class="hide"></textarea>
@@ -511,9 +511,9 @@
 			</form>
 		</div>
 		
-		<div class="followUpSection">
+		<!-- <div class="followUpSection">
 			<a class="btn btn-primary btn-block">FollowUp</a>
-		</div>
+		</div> -->
 	
 	
 	<script th:inline="javascript">
@@ -603,7 +603,10 @@
 			}
 			
 			var url = "patientvisit?visitId=" + examFindings.visitId;
-			$(".followUpSection a").attr("href", url)
+			$("#followupButton").attr("href", url);
+			
+			var pdfurl = "viewReport?visitId=" + examFindings.visitId;
+			$("#viewReportButton").attr("href", pdfurl);
 		});
 		/*]]>*/
 	</script>

@@ -18,5 +18,10 @@
 		
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver"
 		p:templateEngine-ref="templateEngine"/>
+		
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value="views"/>
+    </bean>
 			
 </beans>
