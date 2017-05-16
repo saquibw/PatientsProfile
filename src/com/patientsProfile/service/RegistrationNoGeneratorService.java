@@ -1,6 +1,5 @@
 package com.patientsProfile.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,29 +22,24 @@ private JdbcTemplate jdbcTemplate;
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public Object getRegNo(Integer date, Integer month, Integer year){
+	public Object getRegNo(){
 		SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withProcedureName("getRegNo");
 		
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("dt", date);
-		param.put("mnth", month);
-		param.put("yr", year);
-		
-		SqlParameterSource in = new MapSqlParameterSource(param);
+		SqlParameterSource in = new MapSqlParameterSource();
 		
 		Map<String, Object> output = call.execute(in);
-		return output.get("output");		
+		return output.get("output");
 	}
 	
-	public void createRegNo(Integer day, Integer month, Integer year){
-		String sql = "Insert INTO reg_no_generator (day, month, year, regNo) values (?,?,?,?)";
+	public void createRegNo(){
+		String sql = "Insert INTO reg_no_generator (regNo) values (?)";
 		
-		jdbcTemplate.update(sql, new Object[]{day, month, year, 1});
+		jdbcTemplate.update(sql, new Object[]{1});
 	}
 	
-	public void updateRegNo(Integer day, Integer month, Integer year){
-		String sql = "Update reg_no_generator set regNo = regNo+1 Where day=? And month=? And year=?";
+	public void updateRegNo(){
+		String sql = "Update reg_no_generator set regNo = regNo+1";
 		
-		jdbcTemplate.update(sql, new Object[]{day, month, year});
+		jdbcTemplate.update(sql);
 	}
 }

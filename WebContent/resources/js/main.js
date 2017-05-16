@@ -13,12 +13,7 @@ var PatientManager = (function(){
 		var request = $.ajax({
 			type: "GET",
 			url: "getRegNo",
-			dataType: 'JSON',
-			data: {
-				"day": day,
-				"month": month,
-				"year": year
-			}
+			dataType: 'JSON'
 		});
 		
 		request.done(function(response){
@@ -119,7 +114,6 @@ var PatientManager = (function(){
 	};
 	
 	var selectRadioButton = function(element){
-		console.log("Select element: " + element);
 		var input = $('input:radio[name=' + element + ']')[1];
 		input.checked = true;
 	}

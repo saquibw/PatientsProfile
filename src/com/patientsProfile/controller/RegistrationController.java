@@ -41,25 +41,14 @@ public class RegistrationController {
 	public String savePatient(Patient patient, RedirectAttributes redirectAttrs){
 		patientService.create(patient);
 		
-		String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 		String regNo = patient.getRegNo();
 		String[] regArr = regNo.split("/");
-		Integer day = Integer.parseInt(regArr[1]);
-		String monthString = regArr[2];
-		int index = 0;
-		for(int i=0;i<months.length;i++){
-			if(months[i].equals(monthString)){
-				index = i+1;
-				break;
-			}
-		}
-		Integer month = index;
-		Integer year = Integer.parseInt(regArr[0]);
+		
 		Integer regIndex = Integer.parseInt(regArr[3]);
 		if(regIndex == 1){
-			regService.createRegNo(day, month, year);
+			regService.createRegNo();
 		}else{
-			regService.updateRegNo(day, month, year);
+			regService.updateRegNo();
 		}
 		
 		redirectAttrs.addFlashAttribute("regNo", patient.getRegNo());

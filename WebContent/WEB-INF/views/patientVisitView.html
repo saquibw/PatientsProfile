@@ -256,34 +256,9 @@
 					</tr>
 					
 					<tr>
-						<td><label>Blood Suger:<br></br> RBS</label></td>
-						<td><input type="text" th:field="*{bsRbsValue}" class="form-control half-width"/>mmol/L</td>		
-						
-						<td><label>Fasting -</label></td>
-						<td><input type="text" th:field="*{bsFastingValue}" class="form-control half-width"/>mmol/L</td>
-						
-						<td style="padding-left: 25px;"><label>2 HABF -</label></td>
-						<td><input type="text" th:field="*{habfValue}" class="form-control half-width"/>mmol/L</td>
-						
-						<td><label>HbA1C -</label></td>
-						<td><input type="text" th:field="*{hba1cValue}" class="form-control half-width"/>%</td>
-					</tr>
-					
-					<tr>
-						<td><label>S. Creatinin -</label></td>
-						<td><input type="text" th:field="*{creatininValue}" class="form-control half-width"/>mmol/L</td>
-						
-						<td><label>B. Urea -</label></td>
-						<td><input type="text" th:field="*{bUreaValue}" class="form-control half-width"/>mg/dl</td>
-						
-						<td style="padding-left: 15px;"><label>Uric Acid -</label></td>
-						<td><input type="text" th:field="*{uricAcidValue}" class="form-control half-width"/>mg/dl</td>
-						
 						<td><label>D.C. - P</label></td>
 						<td><input type="text" th:field="*{dcPValue}" class="form-control half-width"/>%</td>
-					</tr>
-					
-					<tr>
+						
 						<td><label>D.C. - L</label></td>
 						<td><input type="text" th:field="*{dcLValue}" class="form-control half-width"/>%</td>
 						
@@ -292,9 +267,34 @@
 						
 						<td><label>D.C. - E</label></td>
 						<td><input type="text" th:field="*{dcEValue}" class="form-control half-width"/>%</td>
-						
+					</tr>
+					
+					<tr>
 						<td><label>D.C. - B</label></td>
 						<td><input type="text" th:field="*{dcBValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>Blood Suger:<br></br> RBS</label></td>
+						<td><input type="text" th:field="*{bsRbsValue}" class="form-control half-width"/>mmol/L</td>		
+						
+						<td style="padding-left: 25px;"><label>Fasting -</label></td>
+						<td><input type="text" th:field="*{bsFastingValue}" class="form-control half-width"/>mmol/L</td>
+						
+						<td><label>2 HABF -</label></td>
+						<td><input type="text" th:field="*{habfValue}" class="form-control half-width"/>mmol/L</td>
+					</tr>
+					
+					<tr>
+						<td><label>HbA1C -</label></td>
+						<td><input type="text" th:field="*{hba1cValue}" class="form-control half-width"/>%</td>
+						
+						<td><label>S. Creatinin -</label></td>
+						<td><input type="text" th:field="*{creatininValue}" class="form-control half-width"/>mg/dl</td>
+						
+						<td style="padding-left: 15px;"><label>B. Urea -</label></td>
+						<td><input type="text" th:field="*{bUreaValue}" class="form-control half-width"/>mg/dl</td>
+						
+						<td><label>Uric Acid -</label></td>
+						<td><input type="text" th:field="*{uricAcidValue}" class="form-control half-width"/>mg/dl</td>
 					</tr>
 					
 					<tr>
@@ -381,6 +381,11 @@
 						<td><label>RBC -</label></td>
 						<td><label class="radio-inline"><input type="radio" th:name="uRbcValue" value="0"/>Nil</label>
 						<label class="radio-inline"><input type="radio" th:name="uRbcValue" value="" class="radio-top-margin"/><input type="text" class="uRbcValue half-width form-control float-right"/></label><span>/HPF</span></td>
+					
+						<td><label>M.T</label></td>
+						<td><input type="text" th:field="*{mtValue}" class="form-control half-width"/>mm</td>
+						
+						<td colspan="4"></td>
 					</tr>
 					
 					<tr>

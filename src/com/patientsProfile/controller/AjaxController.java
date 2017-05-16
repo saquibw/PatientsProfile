@@ -35,8 +35,9 @@ public class AjaxController {
 
 	@ResponseBody
 	@RequestMapping(value="/getRegNo", method=RequestMethod.GET, produces="application/json")
-	public JsonObject getRegNo(@RequestParam("day") Integer day, @RequestParam("month") Integer month, @RequestParam("year") Integer year, HttpServletResponse response) throws Exception{
-		Integer regNo = (Integer)regService.getRegNo(day, month, year);
+	public JsonObject getRegNo() throws Exception{
+
+		Integer regNo = (Integer)regService.getRegNo();
 		JsonObject obj = new JsonObject();
 		obj.addProperty("success", true);
 		obj.addProperty("regNo", regNo);

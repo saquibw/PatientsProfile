@@ -43,6 +43,7 @@ public class Investigation {
 	private String uPcValue;
 	private String uEcValue;
 	private String uRbcValue;
+	private String mtValue;
 	private String spuAfb1Value;
 	private String spuAfb2Value;
 	private String spuAfb3Value;
@@ -497,6 +498,12 @@ public class Investigation {
 	}
 	public void setT4Value(String t4Value) {
 		this.t4Value = t4Value;
+	}
+	public String getMtValue() {
+		return mtValue;
+	}
+	public void setMtValue(String mtValue) {
+		this.mtValue = mtValue;
 	}
 	
 }
